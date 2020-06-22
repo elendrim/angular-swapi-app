@@ -1,0 +1,147 @@
+
+<h2>People Details</h2>
+
+<div *ngIf="people" >
+
+    <section>
+        <div class="example-label">Id</div>
+        <div class="example-button-row">
+            {{people.id}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Name</div>
+        <div class="example-button-row">
+            {{people.name}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Birth year</div>
+        <div class="example-button-row">
+            {{people.birth_year}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Eye color</div>
+        <div class="example-button-row">
+            {{people.eye_color}}
+            <span *ngIf="people.eye_color =='blue' " class="material-icons md-48" style="color:blue">
+                visibility
+            </span>
+            <span *ngIf="people.eye_color =='yellow' " class="material-icons md-48" style="color:yellow">
+                visibility
+            </span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Gender</div>
+        <div class="example-button-row">
+            {{people.gender}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Hair color</div>
+        <div class="example-button-row">
+            <span> : {{people.hair_color}}</span>&nbsp;
+            <span>
+                <i *ngIf="people.hair_color =='blond' " class="material-icons md-48" style="color:yellow">face</i>  
+            </span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Height</div>
+        <div class="example-button-row">
+            <span> {{people.height}}</span>
+            <mat-icon aria-hidden="false" aria-label="Height">height</mat-icon>
+            
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Mass</div>
+        <div class="example-button-row">
+            <span> {{people.mass}}</span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Skin color</div>
+        <div class="example-button-row">
+            <span>{{people.skin_color}}</span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">Homeworld</div>
+        <div class="example-button-row">
+            <span> {{people.homeworld}}</span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+
+    <mat-tab-group>
+        <mat-tab label="vehicles">
+            <h1>Vehicles</h1>
+            <div>
+                <ul>
+                    <li *ngFor="let vehicule of people.vehicles">{{vehicule}}</li>
+                </ul>
+            </div>
+        </mat-tab>
+        <mat-tab label="starships">
+            <h1>Starships</h1>
+            <div>
+                <ul>
+                    <li *ngFor="let starship of people.starships">{{starship}}</li>
+                </ul>
+            </div>
+        </mat-tab>
+        <mat-tab label="species">
+            <h1>Species</h1>
+            <div>
+                <ul>
+                    <li *ngFor="let species of people.species">{{species}}</li>
+                </ul>
+            </div>
+        </mat-tab>
+        <mat-tab label="films">
+            <h1>Films</h1>
+            <div>
+                <ul>
+                    <li *ngFor="let film of people.films">{{film}}</li>
+                </ul>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+
+    <div>
+        <label for="url">
+            Url
+        </label>
+        <span>{{people.url}}</span>
+    </div>
+
+    <div>
+        <label for="created">
+            Created
+        </label>
+        <span>{{people.created}}</span>
+    </div>
+
+    <div>
+        <label for="edited">
+            Edited
+        </label>
+        <span>{{people.edited}}</span>
+    </div>
+    
+
+</div>
