@@ -1,147 +1,310 @@
 
-<h2>People Details</h2>
+<div *ngIf="people" class="basic-container" >
 
-<div *ngIf="people" >
+    
+    <h2>
+        <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-starship"></mat-icon></span>
+        <span>{{people.name}}</span>
+        
+    </h2>
+
+
 
     <section>
-        <div class="example-label">Id</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Id
+        </div>
         <div class="example-button-row">
             {{people.id}}
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Name</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Name
+        </div>
         <div class="example-button-row">
             {{people.name}}
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Birth year</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">cake</mat-icon>
+            Birth year
+        </div>
         <div class="example-button-row">
             {{people.birth_year}}
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Eye color</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">visibility</mat-icon>
+            Eye color
+        </div>
         <div class="example-button-row">
             {{people.eye_color}}
-            <span *ngIf="people.eye_color =='blue' " class="material-icons md-48" style="color:blue">
-                visibility
-            </span>
-            <span *ngIf="people.eye_color =='yellow' " class="material-icons md-48" style="color:yellow">
-                visibility
-            </span>
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Gender</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Gender
+        </div>
         <div class="example-button-row">
             {{people.gender}}
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Hair color</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">face</mat-icon>
+            Hair color
+        </div>
         <div class="example-button-row">
-            <span> : {{people.hair_color}}</span>&nbsp;
-            <span>
-                <i *ngIf="people.hair_color =='blond' " class="material-icons md-48" style="color:yellow">face</i>  
-            </span>
+            <span>{{people.hair_color}}</span>&nbsp;
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Height</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">height</mat-icon>
+            Height
+        </div>
         <div class="example-button-row">
-            <span> {{people.height}}</span>
-            <mat-icon aria-hidden="false" aria-label="Height">height</mat-icon>
-            
+            <span>{{people.height}}</span>
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Mass</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Mass
+        </div>
         <div class="example-button-row">
-            <span> {{people.mass}}</span>
+            <span>{{people.mass}}</span>
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Skin color</div>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">fingerprint</mat-icon>
+            Skin color
+        </div>
         <div class="example-button-row">
             <span>{{people.skin_color}}</span>
         </div>
     </section>
     <mat-divider></mat-divider>
     <section>
-        <div class="example-label">Homeworld</div>
+        <div class="example-label">
+            <mat-icon svgIcon="sw_planet"  class="example-tab-icon"></mat-icon>
+            Homeworld
+        </div>
         <div class="example-button-row">
-            <span> {{people.homeworld}}</span>
+            <span *ngIf="homeworld">{{homeworld.name}}</span>
         </div>
     </section>
-    <mat-divider></mat-divider>
 
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Created
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="people.created">{{people.created | date:'medium'}}</span>
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Edited
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="people.created">{{people.edited | date:'medium'}}</span>
+        </div>
+    </section>
+
+    <br />
 
     <mat-tab-group>
-        <mat-tab label="vehicles">
-            <h1>Vehicles</h1>
-            <div>
-                <ul>
-                    <li *ngFor="let vehicule of people.vehicles">{{vehicule}}</li>
-                </ul>
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon svgIcon="sw_vehicle"  class="example-tab-icon"></mat-icon>
+            Vehicle
+            </ng-template>
+            
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceVehicle">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Model Column -->
+                    <ng-container matColumnDef="model">
+                      <th mat-header-cell *matHeaderCellDef> Model </th>
+                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+                    </ng-container>
+                  
+                    <!-- vehicle_class Column -->
+                    <ng-container matColumnDef="vehicle_class">
+                      <th mat-header-cell *matHeaderCellDef> vehicle_class </th>
+                      <td mat-cell *matCellDef="let element"> {{element.vehicle_class}} </td>
+                    </ng-container>
+                  
+                    <!-- manufacturer Column -->
+                    <ng-container matColumnDef="manufacturer">
+                      <th mat-header-cell *matHeaderCellDef> manufacturer </th>
+                      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsVehicle"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsVehicle;"></tr>
+                  </table>
+
+
             </div>
         </mat-tab>
-        <mat-tab label="starships">
-            <h1>Starships</h1>
-            <div>
-                <ul>
-                    <li *ngFor="let starship of people.starships">{{starship}}</li>
-                </ul>
+        <mat-tab label="">
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_starship"  class="example-tab-icon"></mat-icon>
+                Starships
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceStarship">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Model Column -->
+                    <ng-container matColumnDef="model">
+                      <th mat-header-cell *matHeaderCellDef> Model </th>
+                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+                    </ng-container>
+                  
+                    <!-- starship_class Column -->
+                    <ng-container matColumnDef="starship_class">
+                      <th mat-header-cell *matHeaderCellDef> starship_class </th>
+                      <td mat-cell *matCellDef="let element"> {{element.starship_class}} </td>
+                    </ng-container>
+                  
+                    <!-- manufacturer Column -->
+                    <ng-container matColumnDef="manufacturer">
+                      <th mat-header-cell *matHeaderCellDef> manufacturer </th>
+                      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsStarship"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsStarship;"></tr>
+                  </table>
+
+
             </div>
         </mat-tab>
-        <mat-tab label="species">
-            <h1>Species</h1>
-            <div>
-                <ul>
-                    <li *ngFor="let species of people.species">{{species}}</li>
-                </ul>
+        <mat-tab >
+
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_species"  class="example-tab-icon"></mat-icon>
+                Species
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceSpecies">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- classification Column -->
+                    <ng-container matColumnDef="classification">
+                      <th mat-header-cell *matHeaderCellDef> Classification </th>
+                      <td mat-cell *matCellDef="let element"> {{element.classification}} </td>
+                    </ng-container>
+                  
+                    <!-- designation Column -->
+                    <ng-container matColumnDef="designation">
+                      <th mat-header-cell *matHeaderCellDef> designation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsSpecies"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsSpecies;"></tr>
+                  </table>
+
+
             </div>
         </mat-tab>
         <mat-tab label="films">
-            <h1>Films</h1>
-            <div>
-                <ul>
-                    <li *ngFor="let film of people.films">{{film}}</li>
-                </ul>
+
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_films"  class="example-tab-icon"></mat-icon>
+                Films
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceFilms">
+                  
+                    <!-- title Column -->
+                    <ng-container matColumnDef="title">
+                      <th mat-header-cell *matHeaderCellDef> title </th>
+                      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                    </ng-container>
+                  
+                    <!-- episode_id Column -->
+                    <ng-container matColumnDef="episode_id">
+                      <th mat-header-cell *matHeaderCellDef> episode_id </th>
+                      <td mat-cell *matCellDef="let element"> {{element.episode_id}} </td>
+                    </ng-container>
+                  
+                    <!-- director Column -->
+                    <ng-container matColumnDef="director">
+                      <th mat-header-cell *matHeaderCellDef> director </th>
+                      <td mat-cell *matCellDef="let element"> {{element.director}} </td>
+                    </ng-container>
+
+                    <!-- producer Column -->
+                    <ng-container matColumnDef="producer">
+                        <th mat-header-cell *matHeaderCellDef> producer </th>
+                        <td mat-cell *matCellDef="let element"> {{element.producer}} </td>
+                    </ng-container>
+
+                      <!-- release_date Column -->
+                    <ng-container matColumnDef="release_date">
+                        <th mat-header-cell *matHeaderCellDef> release_date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.release_date}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFilms"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFilms;"></tr>
+                  </table>
+
+
             </div>
         </mat-tab>
     </mat-tab-group>
 
 
-    <div>
-        <label for="url">
-            Url
-        </label>
-        <span>{{people.url}}</span>
-    </div>
-
-    <div>
-        <label for="created">
-            Created
-        </label>
-        <span>{{people.created}}</span>
-    </div>
-
-    <div>
-        <label for="edited">
-            Edited
-        </label>
-        <span>{{people.edited}}</span>
-    </div>
+   
     
 
 </div>

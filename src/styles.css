@@ -2,3 +2,76 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.basic-container {
+  padding: 30px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+  margin: 8px;
+}
+
+.material-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.mat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+} 
+
+
+.size-24  {
+    width: 24px;
+    height: 24px;
+    transform: scale(1.5);
+}
+
+.background-people {
+    /* purple */
+    background: #f48fb1;
+}
+
+.background-films {
+    /* indigo */
+    background: #9fa8da;
+}
+
+.background-species {
+    /* Teal */
+    background: #4db6ac;
+}
+
+.background-vehicle {
+    /* green */
+    background: #81c784;
+}
+
+.background-starship {
+    /* green */
+    background: #ffe082;
+}
+
+.background-planet {
+    /* deep orange*/
+    background: #ff8a65;
+}
+
+
+.circle-icon {
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.top-icon {
+    margin-right: 20px;
+}

@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

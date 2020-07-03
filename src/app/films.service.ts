@@ -5,7 +5,7 @@ import { catchError, retry } from 'rxjs/operators'
 
 
 
-export interface People {
+export interface Films {
   id: string;
   name: string;
   height: string;
@@ -28,19 +28,19 @@ export interface People {
 @Injectable({
   providedIn: 'root'
 })
-export class PeopleService {
+export class FilmsService {
 
-  url = "https://swapi.dev/api/people/";
+  url = "https://swapi.dev/api/films/";
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getPeople(id: string) : Observable<People> {
-    return this.http.get<People>(this.url + id +"?format=json");
+  getFilms(id: string) : Observable<Films> {
+    return this.http.get<Films>(this.url + id +"?format=json");
   }
 
-  getPeopleFromURL(url: string) : Observable<People> {
-    return this.http.get<People>(url +"?format=json");
+  getFilmsFromURL(url: string) : Observable<Films> {
+    return this.http.get<Films>(url +"?format=json");
   }
 }

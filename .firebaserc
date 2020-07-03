@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-swapi-app": {
+      "hosting": {
+        "angular-swapi-app": [
+          "angular-swapi-app"
+        ]
+      }
+    }
+  }
+}

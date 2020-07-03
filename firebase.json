@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "angular-swapi-app",
+      "public": "dist/angular-swapi-app",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
