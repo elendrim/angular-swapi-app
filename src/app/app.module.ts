@@ -9,6 +9,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppComponent } from './app.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PeopleSearchComponent } from './people-search/people-search.component';
     AppComponent,
     PeopleDetailsComponent,
     PeopleSearchComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

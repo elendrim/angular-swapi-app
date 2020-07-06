@@ -68,6 +68,12 @@ export class AppComponent implements OnDestroy {
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/radiusss/btl_y_wing_by_radiusss.svg')
     );
 
+    iconRegistry.addSvgIcon(
+      'sw_blaster',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/radiusss/blaster_by_radiusss.svg')
+    );
+    
+
     
 
   }
