@@ -4,6 +4,16 @@
         <mat-spinner></mat-spinner>
     </div>
 
+    <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-people"></mat-icon></span>
+
+    <mat-form-field>
+        <input matInput placeholder="Search people" #inputSearch>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <br />
+    <br />
+
     <mat-table class="people-table mat-elevation-z8" [dataSource]="dataSource">
 
         <ng-container matColumnDef="id">
@@ -14,14 +24,71 @@
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
             <mat-cell class="name-cell"
-                    *matCellDef="let people">{{people.name}}</mat-cell>
+                    *matCellDef="let people">            
+                    <a mat-list-item [routerLink]="['/people/', people.id]" >{{people.name}}</a>
+            </mat-cell>
 
         </ng-container>
 
         <ng-container matColumnDef="birth_year">
-            <mat-header-cell *matHeaderCellDef>birth_year</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="example-tab-icon" >cake</mat-icon>
+                birth year
+            </mat-header-cell>
             <mat-cell class="birth-year-cell"
                     *matCellDef="let people">{{people.birth_year}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eye_color">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="example-tab-icon">visibility</mat-icon>
+                eye color
+            </mat-header-cell>
+            <mat-cell class="eye-color-cell"
+                    *matCellDef="let people">{{people.eye_color}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <mat-header-cell *matHeaderCellDef>
+                gender
+            </mat-header-cell>
+            <mat-cell class="gender-cell"
+                    *matCellDef="let people">{{people.gender}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hair_color">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="example-tab-icon">face</mat-icon>
+                hair color
+            </mat-header-cell>
+            <mat-cell class="hair-color-cell"
+                    *matCellDef="let people">{{people.hair_color}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="height">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="example-tab-icon">height</mat-icon>
+                height
+            </mat-header-cell>
+            <mat-cell class="height-cell"
+                    *matCellDef="let people">{{people.height}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="mass">
+            <mat-header-cell *matHeaderCellDef>
+                mass
+        </mat-header-cell>
+            <mat-cell class="mass-cell"
+                    *matCellDef="let people">{{people.mass}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="skin_color">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="example-tab-icon">fingerprint</mat-icon>
+                skin color
+            </mat-header-cell>
+            <mat-cell class="skin-color-cell"
+                    *matCellDef="let people">{{people.skin_color}}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

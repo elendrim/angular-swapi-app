@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
-import { catchError, finalize, retry, tap } from 'rxjs/operators'
+import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
+import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {PeopleService, People} from "../people.service"
@@ -15,8 +15,9 @@ import {PeopleService, People} from "../people.service"
 export class PeopleSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: PeopleDataSource;
-  displayedColumns= ["id", "name", "birth_year"];
+  displayedColumns= ["id", "name", "birth_year", "eye_color", "gender", "hair_color", "height", "mass", "skin_color"] ;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('inputSearch') input: ElementRef;
 
   length = 0;
   pageSize = 10;
@@ -39,6 +40,19 @@ export class PeopleSearchComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
+
+    // server-side search
+    fromEvent(this.input.nativeElement,'keyup')
+    .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap(() => {
+            this.paginator.pageIndex = 0;
+            this.loadPeoplePage();
+        })
+    )
+    .subscribe();
+
     this.paginator.page
         .pipe(
             tap(() => this.loadPeoplePage())
@@ -49,14 +63,14 @@ export class PeopleSearchComponent implements AfterViewInit, OnInit {
   loadPeoplePage() {
 
     this.peopleService
-      .countPeople('',)
+      .countPeople(this.input.nativeElement.value)
       .subscribe(data => {
         this.paginator.length = data
         this.length = data; 
       });
 
     this.dataSource.loadPeople(
-        '',
+        this.input.nativeElement.value,
         '',
         'asc',
         this.paginator.pageIndex,
@@ -95,7 +109,20 @@ export class PeopleDataSource implements DataSource<People> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
     )
-    .subscribe(people => this.peopleSubject.next(people));
+    .subscribe(peopleTab => {
+
+      peopleTab.forEach(people => {
+        var id = people.url.substring(people.url.lastIndexOf('/') + 1);
+        if( !id ) {
+          // remove last caracter
+          var subsUrl = people.url.substring(0, people.url.length -1 );
+          id = subsUrl.substring(subsUrl.lastIndexOf('/') + 1);
+        }
+        people.id = id;  
+      });
+      
+      this.peopleSubject.next(peopleTab);
+    });
 
   }  
 }
