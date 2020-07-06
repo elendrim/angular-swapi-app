@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularMaterialModule } from './angular-material.module';
 import { AppComponent } from './app.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
+import { PeopleSearchComponent } from './people-search/people-search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleDetailsComponent,
+    PeopleSearchComponent,
   ],
   imports: [
     BrowserModule,

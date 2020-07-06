@@ -1,0 +1,10 @@
+.spinner-container mat-spinner {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
