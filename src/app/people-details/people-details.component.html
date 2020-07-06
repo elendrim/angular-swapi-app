@@ -265,7 +265,7 @@
         <mat-tab label="films">
 
             <ng-template mat-tab-label>
-                <mat-icon svgIcon="sw_films"  class="example-tab-icon"></mat-icon>
+                <mat-icon svgIcon="sw_film"  class="example-tab-icon"></mat-icon>
                 FILMS
             </ng-template>
 
@@ -275,8 +275,10 @@
                   
                     <!-- title Column -->
                     <ng-container matColumnDef="title">
-                      <th mat-header-cell *matHeaderCellDef> Title </th>
-                      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <a mat-list-item [routerLink]="['/film/', element.id]" > {{element.title}} </a>
+                        </td>
                     </ng-container>
                   
                     <!-- episode_id Column -->
@@ -299,7 +301,7 @@
 
                       <!-- release_date Column -->
                     <ng-container matColumnDef="release_date">
-                        <th mat-header-cell *matHeaderCellDef> release_date </th>
+                        <th mat-header-cell *matHeaderCellDef> Release date </th>
                         <td mat-cell *matCellDef="let element"> {{element.release_date}} </td>
                     </ng-container>
                   

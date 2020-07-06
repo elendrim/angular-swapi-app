@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 import { AboutComponent } from './about/about.component';
+import { FilmSearchComponent } from './film-search/film-search.component';
+import { FilmDetailsComponent } from './film-details/film-details.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { AboutComponent } from './about/about.component';
     PeopleDetailsComponent,
     PeopleSearchComponent,
     AboutComponent,
+    FilmSearchComponent,
+    FilmDetailsComponent,
   ],
   imports: [
     BrowserModule,

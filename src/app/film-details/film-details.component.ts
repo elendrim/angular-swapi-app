@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,17 +14,16 @@ import { PlanetService, Planet } from '../planet.service';
 import { HelperService } from '../helper.service';
 
 
+
 @Component({
-  selector: 'app-people-details',
-  templateUrl: './people-details.component.html',
-  styleUrls: ['./people-details.component.css']
+  selector: 'app-film-details',
+  templateUrl: './film-details.component.html',
+  styleUrls: ['./film-details.component.css']
 })
-export class PeopleDetailsComponent implements OnInit {
+export class FilmDetailsComponent implements OnInit {
 
-  people : People;
-  homeworld : Planet;
+  film : Film;
   
-
   displayedColumnsVehicle: string[] = ['name', 'model', 'vehicle_class', 'manufacturer'];
   dataSourceVehicle = new MatTableDataSource<Vehicle>();
 
@@ -33,8 +34,11 @@ export class PeopleDetailsComponent implements OnInit {
   displayedColumnsSpecies: string[] = ['name', 'classification', 'designation'];
   dataSourceSpecies = new MatTableDataSource<Species>();
   
-  displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
-  dataSourceFilms = new MatTableDataSource<Film>();
+  displayedColumnsPeople: string[] = ['name', 'birth_year', 'eye_color', 'gender', 'hair_color', 'height'];
+  dataSourcePeople = new MatTableDataSource<People>();
+
+  displayedColumnsPlanet: string[] = ['name', 'diameter', 'rotation_period', 'orbital_period', 'gravity', 'population'];
+  dataSourcePlanet = new MatTableDataSource<Planet>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -54,27 +58,15 @@ export class PeopleDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('peopleId');
+      var id = params.get('filmId');
 
-      this.peopleService.getPeople(id).subscribe(data => {
-        this.people = data;
-        this.people.id = id;
-
-        // homeworld
-        var obs = this.planetService.getPlanetFromURL(this.people.homeworld);
-        obs.subscribe(planet => {
-
-          var planetId = this.helperService.getIdFromUrl(this.people.homeworld);
-          
-          this.homeworld = planet; 
-          this.homeworld.id = planetId;
-
-        });
-
+      this.filmService.getFilm(id).subscribe(data => {
+        this.film = data;
+        this.film.id = id;
 
         // vehicles
         var vehicles = new Array<Vehicle>();
-        this.people.vehicles.forEach( element=> {
+        this.film.vehicles.forEach( element=> {
           
           var obs = this.vehicleService.getVehicleFromURL(element);
 
@@ -89,7 +81,7 @@ export class PeopleDetailsComponent implements OnInit {
 
         // starships
         var starships = new Array<Starship>();
-        this.people.starships.forEach( element=> {
+        this.film.starships.forEach( element=> {
           var obs = this.starshipService.getStarshipFromURL(element);
 
           obs.subscribe(data => {
@@ -100,7 +92,7 @@ export class PeopleDetailsComponent implements OnInit {
 
         // species
         var species = new Array<Species>();
-        this.people.species.forEach( element=> {
+        this.film.species.forEach( element=> {
           var obs = this.speciesService.getSpeciesFromURL(element);
 
           obs.subscribe(data => {
@@ -109,18 +101,33 @@ export class PeopleDetailsComponent implements OnInit {
           });
         });
 
-        // films
-        var films = new Array<Film>();
-        this.people.films.forEach( element=> {
-          var obs = this.filmService.getFilmFromURL(element);
+        // characters
+        var people = new Array<People>();
+        this.film.characters.forEach( element=> {
+          var obs = this.peopleService.getPeopleFromURL(element);
 
           obs.subscribe(data => {
 
             var id = this.helperService.getIdFromUrl(element);
             data.id = id; 
 
-            films.push(data);
-            this.dataSourceFilms.data = films; 
+            people.push(data);
+            this.dataSourcePeople.data = people; 
+          });
+        });
+
+        // planets
+        var planets = new Array<Planet>();
+        this.film.planets.forEach( element=> {
+          var obs = this.planetService.getPlanetFromURL(element);
+
+          obs.subscribe(data => {
+
+            var id = this.helperService.getIdFromUrl(element);
+            data.id = id; 
+
+            planets.push(data);
+            this.dataSourcePlanet.data = planets; 
           });
         });
 

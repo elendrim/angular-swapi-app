@@ -58,7 +58,13 @@ export class AppComponent implements OnDestroy {
 
     // films
     iconRegistry.addSvgIcon(
-      'sw_films',
+      'sw_film',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material/theaters-black-18dp.svg')
+    );
+
+    // about
+    iconRegistry.addSvgIcon(
+      'sw_miscellaneous',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/radiusss/miscellaneous_by_radiusss.svg')
     );
 
@@ -72,6 +78,7 @@ export class AppComponent implements OnDestroy {
       'sw_blaster',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/radiusss/blaster_by_radiusss.svg')
     );
+    
     
 
     

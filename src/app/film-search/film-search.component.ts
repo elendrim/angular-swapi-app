@@ -1,22 +1,27 @@
+
+
+
+
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
 import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
-import {PeopleService, People} from "../people.service"
+import {FilmService, Film} from "../film.service"
 import {HelperService} from "../helper.service"
 
 
-@Component({
-  selector: 'app-people-search',
-  templateUrl: './people-search.component.html',
-  styleUrls: ['./people-search.component.css']
-})
-export class PeopleSearchComponent implements AfterViewInit, OnInit {
 
-  dataSource: PeopleDataSource;
-  displayedColumns= ["id", "name", "birth_year", "eye_color", "gender", "hair_color", "height", "mass", "skin_color"] ;
+@Component({
+  selector: 'app-film-search',
+  templateUrl: './film-search.component.html',
+  styleUrls: ['./film-search.component.css']
+})
+export class FilmSearchComponent implements AfterViewInit, OnInit {
+
+  dataSource: FilmDataSource;
+  displayedColumns= ["id", "title", "episode_id", "director", "producer", "release_date"] ;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -26,15 +31,15 @@ export class PeopleSearchComponent implements AfterViewInit, OnInit {
 
 
   constructor(
-    private peopleService: PeopleService,
+    private filmService: FilmService,
     private helperService: HelperService,
   ) { }
 
   ngOnInit(): void {
-    this.dataSource = new PeopleDataSource(this.peopleService, this.helperService);
-    this.dataSource.loadPeople( '', '', 'asc', 0, this.pageSize);
-    this.peopleService
-      .countPeople('',)
+    this.dataSource = new FilmDataSource(this.filmService, this.helperService);
+    this.dataSource.loadFilm( '', '', 'asc', 0, this.pageSize);
+    this.filmService
+      .countFilm('',)
       .subscribe(data => {
         this.paginator.length = data
         this.length = data; 
@@ -50,76 +55,76 @@ export class PeopleSearchComponent implements AfterViewInit, OnInit {
         distinctUntilChanged(),
         tap(() => {
             this.paginator.pageIndex = 0;
-            this.loadPeoplePage();
+            this.loadFilmPage();
         })
     )
     .subscribe();
 
     this.paginator.page
         .pipe(
-            tap(() => this.loadPeoplePage())
+            tap(() => this.loadFilmPage())
         )
         .subscribe();
   }
 
-  loadPeoplePage() {
+  loadFilmPage() {
 
-    this.peopleService
-      .countPeople(this.input.nativeElement.value)
+    this.filmService
+      .countFilm(this.input.nativeElement.value)
       .subscribe(data => {
         this.paginator.length = data
         this.length = data; 
       });
 
-    this.dataSource.loadPeople(
+    this.dataSource.loadFilm(
         this.input.nativeElement.value,
         '',
         'asc',
         this.paginator.pageIndex,
         this.paginator.pageSize);
-}
+  }
 
 }
 
 
-export class PeopleDataSource implements DataSource<People> {
+export class FilmDataSource implements DataSource<Film> {
 
-  private peopleSubject = new BehaviorSubject<People[]>([]);
+  private filmSubject = new BehaviorSubject<Film[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
   constructor(
-    private peopleService: PeopleService,
+    private filmService: FilmService,
     private helperService: HelperService,
   ) {}
 
-  connect(collectionViewer: CollectionViewer): Observable<People[]> {
-    return this.peopleSubject.asObservable();
+  connect(collectionViewer: CollectionViewer): Observable<Film[]> {
+    return this.filmSubject.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.peopleSubject.complete();
+    this.filmSubject.complete();
     this.loadingSubject.complete();
   }
 
-  loadPeople(search: string, 
+  loadFilm(search: string, 
               ordering: string, sortOrder: string, pageNumber: number, pageSize: number) : void {
     this.loadingSubject.next(true);
 
-    this.peopleService.findPeople(search, ordering, sortOrder,
+    this.filmService.findFilm(search, ordering, sortOrder,
         pageNumber, pageSize).pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
     )
-    .subscribe(peopleTab => {
+    .subscribe(filmTab => {
 
-      peopleTab.forEach(people => {
-        var id = this.helperService.getIdFromUrl(people.url);
-        people.id = id;  
+      filmTab.forEach(film => {
+        var id = this.helperService.getIdFromUrl(film.url);
+        film.id = id;  
       });
       
-      this.peopleSubject.next(peopleTab);
+      this.filmSubject.next(filmTab);
     });
 
   }  

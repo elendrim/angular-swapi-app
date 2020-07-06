@@ -1,0 +1,405 @@
+
+<div *ngIf="film" class="basic-container" >
+
+    
+    <h2>
+        <span><mat-icon svgIcon="sw_film"  class="size-24 circle-icon top-icon background-film"></mat-icon></span>
+        <span>{{film.title}}</span>
+    </h2>
+    
+
+    <mat-tab-group>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            PROPERTIES
+            </ng-template>
+            <div  class="mat-elevation-z8 basic-container">
+
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Id
+                    </div>
+                    <div class="example-button-row">
+                        {{film.id}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Episode Id
+                    </div>
+                    <div class="example-button-row">
+                        {{film.episode_id}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Opening crawl
+                    </div>
+                    <div class="example-button-row">
+                        {{film.opening_crawl}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Director
+                    </div>
+                    <div class="example-button-row">
+                        {{film.director}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Producer
+                    </div>
+                    <div class="example-button-row">
+                        {{film.producer}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Release date
+                    </div>
+                    <div class="example-button-row">
+                        <span>{{film.release_date}}</span>&nbsp;
+                    </div>
+                </section>
+                
+
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Created
+                    </div>
+                    <div class="example-button-row">
+                        <span *ngIf="film.created">{{film.created | date:'medium'}}</span>
+                    </div>
+                </section>
+
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Edited
+                    </div>
+                    <div class="example-button-row">
+                        <span *ngIf="film.created">{{film.edited | date:'medium'}}</span>
+                    </div>
+                </section>
+            </div>
+
+        </mat-tab>
+
+
+        
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon svgIcon="sw_vehicle"  class="example-tab-icon"></mat-icon>
+            VEHICLES
+            </ng-template>
+            
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceVehicle">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Model Column -->
+                    <ng-container matColumnDef="model">
+                      <th mat-header-cell *matHeaderCellDef> Model </th>
+                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+                    </ng-container>
+                  
+                    <!-- vehicle_class Column -->
+                    <ng-container matColumnDef="vehicle_class">
+                      <th mat-header-cell *matHeaderCellDef> Vehicle Class </th>
+                      <td mat-cell *matCellDef="let element"> {{element.vehicle_class}} </td>
+                    </ng-container>
+                  
+                    <!-- manufacturer Column -->
+                    <ng-container matColumnDef="manufacturer">
+                      <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+                      <td mat-cell *matCellDef="let element">{{element.manufacturer}}</td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsVehicle"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsVehicle;"></tr>
+                  </table>
+
+
+            </div>
+        </mat-tab>
+        <mat-tab label="">
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_starship"  class="example-tab-icon"></mat-icon>
+                STARSHIPS
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceStarship">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Model Column -->
+                    <ng-container matColumnDef="model">
+                      <th mat-header-cell *matHeaderCellDef> Model </th>
+                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+                    </ng-container>
+                  
+                    <!-- starship_class Column -->
+                    <ng-container matColumnDef="starship_class">
+                      <th mat-header-cell *matHeaderCellDef> Starship Class </th>
+                      <td mat-cell *matCellDef="let element"> {{element.starship_class}} </td>
+                    </ng-container>
+                  
+                    <!-- manufacturer Column -->
+                    <ng-container matColumnDef="manufacturer">
+                      <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+                      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsStarship"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsStarship;"></tr>
+                  </table>
+
+
+            </div>
+        </mat-tab>
+        <mat-tab >
+
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_species"  class="example-tab-icon"></mat-icon>
+                SPECIES
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourceSpecies">
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- classification Column -->
+                    <ng-container matColumnDef="classification">
+                      <th mat-header-cell *matHeaderCellDef> Classification </th>
+                      <td mat-cell *matCellDef="let element"> {{element.classification}} </td>
+                    </ng-container>
+                  
+                    <!-- designation Column -->
+                    <ng-container matColumnDef="designation">
+                      <th mat-header-cell *matHeaderCellDef> Designation </th>
+                      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsSpecies"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsSpecies;"></tr>
+                  </table>
+
+
+            </div>
+        </mat-tab>
+         
+        <mat-tab label="characters">
+
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_people"  class="example-tab-icon"></mat-icon>
+                CHARACTERS
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourcePeople">
+                  
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                        <mat-cell *matCellDef="let people">{{people.id}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                        <mat-cell class="name-cell"
+                                *matCellDef="let people">            
+                                <a mat-list-item [routerLink]="['/people/', people.id]" >{{people.name}}</a>
+                        </mat-cell>
+            
+                    </ng-container>
+            
+                    <ng-container matColumnDef="birth_year">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-icon class="example-tab-icon" >cake</mat-icon>
+                            Birth year
+                        </mat-header-cell>
+                        <mat-cell class="birth-year-cell"
+                                *matCellDef="let people">{{people.birth_year}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="eye_color">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-icon class="example-tab-icon">visibility</mat-icon>
+                            Eye color
+                        </mat-header-cell>
+                        <mat-cell class="eye-color-cell"
+                                *matCellDef="let people">{{people.eye_color}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="gender">
+                        <mat-header-cell *matHeaderCellDef>
+                            Gender
+                        </mat-header-cell>
+                        <mat-cell class="gender-cell"
+                                *matCellDef="let people">{{people.gender}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="hair_color">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-icon class="example-tab-icon">face</mat-icon>
+                            Hair color
+                        </mat-header-cell>
+                        <mat-cell class="hair-color-cell"
+                                *matCellDef="let people">{{people.hair_color}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="height">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-icon class="example-tab-icon">height</mat-icon>
+                            Height
+                        </mat-header-cell>
+                        <mat-cell class="height-cell"
+                                *matCellDef="let people">{{people.height}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="mass">
+                        <mat-header-cell *matHeaderCellDef>
+                            Mass
+                    </mat-header-cell>
+                        <mat-cell class="mass-cell"
+                                *matCellDef="let people">{{people.mass}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="skin_color">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-icon class="example-tab-icon">fingerprint</mat-icon>
+                            Skin color
+                        </mat-header-cell>
+                        <mat-cell class="skin-color-cell"
+                                *matCellDef="let people">{{people.skin_color}}</mat-cell>
+                    </ng-container>
+            
+                    <mat-header-row *matHeaderRowDef="displayedColumnsPeople"></mat-header-row>
+            
+                    <mat-row *matRowDef="let row; columns: displayedColumnsPeople"></mat-row>
+                </table>
+
+            </div>
+        </mat-tab> 
+
+        <mat-tab label="planets">
+
+            <ng-template mat-tab-label>
+                <mat-icon svgIcon="sw_planet"  class="example-tab-icon"></mat-icon>
+                PLANETS
+            </ng-template>
+
+            <div  class="mat-elevation-z8 basic-container">
+              
+                <table mat-table [dataSource]="dataSourcePlanet">
+                  
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                        <mat-cell *matCellDef="let planet">{{planet.id}}</mat-cell>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                        <mat-cell class="name-cell"
+                                *matCellDef="let planet">            
+                                <a mat-list-item [routerLink]="['/planet/', planet.id]" >{{planet.name}}</a>
+                        </mat-cell>
+            
+                    </ng-container>
+            
+                    <ng-container matColumnDef="diameter">
+                        <mat-header-cell *matHeaderCellDef>
+                            <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                            Diameter
+                        </mat-header-cell>
+                        <mat-cell 
+                                *matCellDef="let planet">{{planet.diameter}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rotation_period">
+                        <mat-header-cell *matHeaderCellDef>
+                            <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                            Rotation period
+                        </mat-header-cell>
+                        <mat-cell 
+                                *matCellDef="let planet">{{planet.rotation_period}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="orbital_period">
+                        <mat-header-cell *matHeaderCellDef>
+                            <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                            Orbital period
+                        </mat-header-cell>
+                        <mat-cell 
+                                *matCellDef="let planet">{{planet.orbital_period}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="gravity">
+                        <mat-header-cell *matHeaderCellDef>
+                            <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                            Gravity
+                        </mat-header-cell>
+                        <mat-cell 
+                                *matCellDef="let planet">{{planet.gravity}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="population">
+                        <mat-header-cell *matHeaderCellDef>
+                            <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                            Population
+                        </mat-header-cell>
+                        <mat-cell 
+                                *matCellDef="let planet">{{planet.population}}</mat-cell>
+                    </ng-container>
+            
+                    <mat-header-row *matHeaderRowDef="displayedColumnsPlanet"></mat-header-row>
+            
+                    <mat-row *matRowDef="let row; columns: displayedColumnsPlanet"></mat-row>
+                </table>
+
+            </div>
+        </mat-tab> 
+
+    </mat-tab-group>
+
+
+   
+    
+
+</div>
