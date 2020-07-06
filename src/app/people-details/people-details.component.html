@@ -5,140 +5,149 @@
     <h2>
         <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-people"></mat-icon></span>
         <span>{{people.name}}</span>
-        
     </h2>
-
-
-
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Id
-        </div>
-        <div class="example-button-row">
-            {{people.id}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Name
-        </div>
-        <div class="example-button-row">
-            {{people.name}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">cake</mat-icon>
-            Birth year
-        </div>
-        <div class="example-button-row">
-            {{people.birth_year}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">visibility</mat-icon>
-            Eye color
-        </div>
-        <div class="example-button-row">
-            {{people.eye_color}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Gender
-        </div>
-        <div class="example-button-row">
-            {{people.gender}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">face</mat-icon>
-            Hair color
-        </div>
-        <div class="example-button-row">
-            <span>{{people.hair_color}}</span>&nbsp;
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">height</mat-icon>
-            Height
-        </div>
-        <div class="example-button-row">
-            <span>{{people.height}}</span>
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Mass
-        </div>
-        <div class="example-button-row">
-            <span>{{people.mass}}</span>
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">fingerprint</mat-icon>
-            Skin color
-        </div>
-        <div class="example-button-row">
-            <span>{{people.skin_color}}</span>
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon svgIcon="sw_planet"  class="example-tab-icon"></mat-icon>
-            Homeworld
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="homeworld">{{homeworld.name}}</span>
-        </div>
-    </section>
-
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Created
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="people.created">{{people.created | date:'medium'}}</span>
-        </div>
-    </section>
-
-    <mat-divider></mat-divider>
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Edited
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="people.created">{{people.edited | date:'medium'}}</span>
-        </div>
-    </section>
-
-    <br />
+    
 
     <mat-tab-group>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            PROPERTIES
+            </ng-template>
+            <div  class="mat-elevation-z8 basic-container">
+
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Id
+                    </div>
+                    <div class="example-button-row">
+                        {{people.id}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Name
+                    </div>
+                    <div class="example-button-row">
+                        {{people.name}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">cake</mat-icon>
+                        Birth year
+                    </div>
+                    <div class="example-button-row">
+                        {{people.birth_year}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">visibility</mat-icon>
+                        Eye color
+                    </div>
+                    <div class="example-button-row">
+                        {{people.eye_color}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Gender
+                    </div>
+                    <div class="example-button-row">
+                        {{people.gender}}
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">face</mat-icon>
+                        Hair color
+                    </div>
+                    <div class="example-button-row">
+                        <span>{{people.hair_color}}</span>&nbsp;
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">height</mat-icon>
+                        Height
+                    </div>
+                    <div class="example-button-row">
+                        <span>{{people.height}}</span>
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Mass
+                    </div>
+                    <div class="example-button-row">
+                        <span>{{people.mass}}</span>
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">fingerprint</mat-icon>
+                        Skin color
+                    </div>
+                    <div class="example-button-row">
+                        <span>{{people.skin_color}}</span>
+                    </div>
+                </section>
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon svgIcon="sw_planet"  class="example-tab-icon"></mat-icon>
+                        Homeworld
+                    </div>
+                    <div class="example-button-row">
+                        <span *ngIf="homeworld">{{homeworld.name}}</span>
+                    </div>
+                </section>
+
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Created
+                    </div>
+                    <div class="example-button-row">
+                        <span *ngIf="people.created">{{people.created | date:'medium'}}</span>
+                    </div>
+                </section>
+
+                <mat-divider></mat-divider>
+                <section>
+                    <div class="example-label">
+                        <mat-icon class="example-tab-icon">vide</mat-icon>
+                        Edited
+                    </div>
+                    <div class="example-button-row">
+                        <span *ngIf="people.created">{{people.edited | date:'medium'}}</span>
+                    </div>
+                </section>
+            </div>
+
+        </mat-tab>
+
+
+        
         <mat-tab>
             <ng-template mat-tab-label>
             <mat-icon svgIcon="sw_vehicle"  class="example-tab-icon"></mat-icon>
-            Vehicle
+            VEHICLE
             </ng-template>
             
             <div  class="mat-elevation-z8 basic-container">
@@ -179,7 +188,7 @@
         <mat-tab label="">
             <ng-template mat-tab-label>
                 <mat-icon svgIcon="sw_starship"  class="example-tab-icon"></mat-icon>
-                Starships
+                STARSHIPS
             </ng-template>
 
             <div  class="mat-elevation-z8 basic-container">
@@ -221,7 +230,7 @@
 
             <ng-template mat-tab-label>
                 <mat-icon svgIcon="sw_species"  class="example-tab-icon"></mat-icon>
-                Species
+                SPECIES
             </ng-template>
 
             <div  class="mat-elevation-z8 basic-container">
@@ -257,7 +266,7 @@
 
             <ng-template mat-tab-label>
                 <mat-icon svgIcon="sw_films"  class="example-tab-icon"></mat-icon>
-                Films
+                FILMS
             </ng-template>
 
             <div  class="mat-elevation-z8 basic-container">
