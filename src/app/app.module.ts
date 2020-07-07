@@ -17,6 +17,12 @@ import { StarshipPropertyComponent } from './starship-property/starship-property
 import { FilmTabsComponent } from './film-tabs/film-tabs.component';
 import { PeopleTabsComponent } from './people-tabs/people-tabs.component';
 import { StarshipSearchComponent } from './starship-search/starship-search.component';
+import { PeoplePropertyComponent } from './people-property/people-property.component';
+import { VehicleTabsComponent } from './vehicle-tabs/vehicle-tabs.component';
+import { StarshipTabsComponent } from './starship-tabs/starship-tabs.component';
+import { SpeciesTabsComponent } from './species-tabs/species-tabs.component';
+import { FilmPropertyComponent } from './film-property/film-property.component';
+import { PlanetTabsComponent } from './planet-tabs/planet-tabs.component';
 
 
 @NgModule({
@@ -32,6 +38,12 @@ import { StarshipSearchComponent } from './starship-search/starship-search.compo
     FilmTabsComponent,
     PeopleTabsComponent,
     StarshipSearchComponent,
+    PeoplePropertyComponent,
+    VehicleTabsComponent,
+    StarshipTabsComponent,
+    SpeciesTabsComponent,
+    FilmPropertyComponent,
+    PlanetTabsComponent,
   ],
   imports: [
     BrowserModule,

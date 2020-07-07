@@ -1,0 +1,87 @@
+<div *ngIf="film" class="mat-elevation-z8 basic-container">
+
+    <img class="details-img" src="https://starwars-visualguide.com/assets/img/films/{{film.id}}.jpg" />
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Id
+        </div>
+        <div class="example-button-row">
+            {{film.id}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Episode Id
+        </div>
+        <div class="example-button-row">
+            {{film.episode_id}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Opening crawl
+        </div>
+        <div class="example-button-row">
+            {{film.opening_crawl}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Director
+        </div>
+        <div class="example-button-row">
+            {{film.director}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Producer
+        </div>
+        <div class="example-button-row">
+            {{film.producer}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Release date
+        </div>
+        <div class="example-button-row">
+            <span>{{film.release_date}}</span>&nbsp;
+        </div>
+    </section>
+    
+
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Created
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="film.created">{{film.created | date:'medium'}}</span>
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Edited
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="film.created">{{film.edited | date:'medium'}}</span>
+        </div>
+    </section>
+</div>

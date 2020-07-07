@@ -22,6 +22,7 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 export class PeopleTabsComponent implements OnInit {
 
   starship : Starship;
+  film : Film;
   
   displayedColumnsPeople: string[] = ['name', 'birth_year', 'eye_color', 'gender', 'hair_color', 'height'];
   dataSourcePeople = new MatTableDataSource<People>();
@@ -43,29 +44,59 @@ export class PeopleTabsComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      var id = params.get('starshipId');
+      // from starships
+      var filmId = params.get('starshipId');
+      if ( filmId ) {
 
-      this.starshipService.getStarship(id).subscribe(data => {
-        this.starship = data;
-        this.starship.id = id;
+        this.starshipService.getStarship(filmId).subscribe(data => {
+          this.starship = data;
+          this.starship.id = filmId;
 
-        // characters
-        var people = new Array<People>();
-        this.starship.pilots.forEach( element=> {
-          var obs = this.peopleService.getPeopleFromURL(element);
+          // characters
+          var people = new Array<People>();
+          this.starship.pilots.forEach( element=> {
+            var obs = this.peopleService.getPeopleFromURL(element);
 
-          obs.subscribe(data => {
+            obs.subscribe(data => {
 
-            var id = this.helperService.getIdFromUrl(element);
-            data.id = id; 
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
 
-            people.push(data);
-            this.dataSourcePeople.data = people; 
+              people.push(data);
+              this.dataSourcePeople.data = people; 
+            });
           });
+
+
         });
+      }
+
+      // from film
+      var filmId = params.get('filmId');
+      if ( filmId ) {
+
+        this.filmService.getFilm(filmId).subscribe(data => {
+          this.film = data;
+          this.film.id = filmId;
+
+          // characters
+          var people = new Array<People>();
+          this.film.characters.forEach( element=> {
+            var obs = this.peopleService.getPeopleFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              people.push(data);
+              this.dataSourcePeople.data = people; 
+            });
+          });
 
 
-      });
+        });
+      }
     });
   }
 

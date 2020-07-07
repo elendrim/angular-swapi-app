@@ -1,324 +1,59 @@
 
-<div *ngIf="people" class="basic-container" >
+<div *ngIf="people" class="basic-container" >    
 
-    
     <h2>
         <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-people"></mat-icon></span>
         <span>{{people.name}}</span>
     </h2>
-    
-
-    <mat-tab-group #tabGroup (selectedTabChange)="handleMatTabChange($event)" *ngIf="people">
         
-        <mat-tab>
-            <ng-template mat-tab-label>
+    <nav mat-tab-nav-bar>
+
+        <!-- properties -->
+        <a mat-tab-link
+        [routerLink]="['/people', people.id ,'property']"
+        routerLinkActive #rla1="routerLinkActive"
+        [active]="rla1.isActive">
             <mat-icon class="example-tab-icon">list</mat-icon>
             PROPERTIES
-            </ng-template>
+        </a>
 
-            <div  class="mat-elevation-z8 basic-container">
+        <!-- vehicles -->
+        <a mat-tab-link
+        [routerLink]="['/people', people.id ,'vehicles']"
+        routerLinkActive #rla2="routerLinkActive"
+        [active]="rla2.isActive">
+            <mat-icon svgIcon="sw_vehicle" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countVehicles}}" matBadgeSize="small" matBadgeOverlap="false">VEHICLES</span>
+        </a>
 
-                <img class="details-img" src="https://starwars-visualguide.com/assets/img/characters/{{people.id}}.jpg" />
+        <!-- startships -->
+        <a mat-tab-link
+        [routerLink]="['/people', people.id ,'starships']"
+        routerLinkActive #rla3="routerLinkActive"
+        [active]="rla3.isActive">
+            <mat-icon svgIcon="sw_starship" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countStarships}}" matBadgeSize="small"  matBadgeOverlap="false">STARSHIPS</span>
+        </a>
 
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Id
-                    </div>
-                    <div class="example-button-row">
-                        {{people.id}}
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Name
-                    </div>
-                    <div class="example-button-row">
-                        {{people.name}}
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">cake</mat-icon>
-                        Birth year
-                    </div>
-                    <div class="example-button-row">
-                        {{people.birth_year}}
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">visibility</mat-icon>
-                        Eye color
-                    </div>
-                    <div class="example-button-row">
-                        {{people.eye_color}}
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Gender
-                    </div>
-                    <div class="example-button-row">
-                        {{people.gender}}
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">face</mat-icon>
-                        Hair color
-                    </div>
-                    <div class="example-button-row">
-                        <span>{{people.hair_color}}</span>&nbsp;
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">height</mat-icon>
-                        Height
-                    </div>
-                    <div class="example-button-row">
-                        <span>{{people.height}}</span>
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Mass
-                    </div>
-                    <div class="example-button-row">
-                        <span>{{people.mass}}</span>
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">fingerprint</mat-icon>
-                        Skin color
-                    </div>
-                    <div class="example-button-row">
-                        <span>{{people.skin_color}}</span>
-                    </div>
-                </section>
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon svgIcon="sw_planet"  class="example-tab-icon"></mat-icon>
-                        Homeworld
-                    </div>
-                    <div class="example-button-row">
-                        <span *ngIf="homeworld">{{homeworld.name}}</span>
-                    </div>
-                </section>
+        <!-- species -->
+        <a mat-tab-link
+        [routerLink]="['/people', people.id ,'species']"
+        routerLinkActive #rla4="routerLinkActive"
+        [active]="rla4.isActive">
+            <mat-icon svgIcon="sw_species" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countSpecies}}" matBadgeSize="small"  matBadgeOverlap="false">SPECIES</span>
+        </a>
 
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Created
-                    </div>
-                    <div class="example-button-row">
-                        <span *ngIf="people.created">{{people.created | date:'medium'}}</span>
-                    </div>
-                </section>
-
-                <mat-divider></mat-divider>
-                <section>
-                    <div class="example-label">
-                        <mat-icon class="example-tab-icon">vide</mat-icon>
-                        Edited
-                    </div>
-                    <div class="example-button-row">
-                        <span *ngIf="people.created">{{people.edited | date:'medium'}}</span>
-                    </div>
-                </section>
-            </div>
-
-        </mat-tab>
-
-
+        <!-- films -->
+        <a mat-tab-link
+        [routerLink]="['/people', people.id ,'films']"
+        routerLinkActive #rla5="routerLinkActive"
+        [active]="rla5.isActive">
+            <mat-icon svgIcon="sw_film" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countFilms}}" matBadgeSize="small" matBadgeOverlap="false">FILMS</span>
+        </a>
         
-        <mat-tab>
-            <ng-template mat-tab-label>
-            <mat-icon svgIcon="sw_vehicle"  class="example-tab-icon"></mat-icon>
-            VEHICLES
-            </ng-template>
-            
-            <div  class="mat-elevation-z8 basic-container">
-              
-                <table mat-table [dataSource]="dataSourceVehicle">
-                  
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef> Name </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>
-                  
-                    <!-- Model Column -->
-                    <ng-container matColumnDef="model">
-                      <th mat-header-cell *matHeaderCellDef> Model </th>
-                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
-                    </ng-container>
-                  
-                    <!-- vehicle_class Column -->
-                    <ng-container matColumnDef="vehicle_class">
-                      <th mat-header-cell *matHeaderCellDef> Vehicle Class </th>
-                      <td mat-cell *matCellDef="let element"> {{element.vehicle_class}} </td>
-                    </ng-container>
-                  
-                    <!-- manufacturer Column -->
-                    <ng-container matColumnDef="manufacturer">
-                      <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
-                      <td mat-cell *matCellDef="let element">{{element.manufacturer}}</td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsVehicle"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsVehicle;"></tr>
-                  </table>
+    </nav>
 
-
-            </div>
-        </mat-tab>
-        <mat-tab label="">
-            <ng-template mat-tab-label>
-                <mat-icon svgIcon="sw_starship"  class="example-tab-icon"></mat-icon>
-                STARSHIPS
-            </ng-template>
-
-            <div  class="mat-elevation-z8 basic-container">
-              
-                <table mat-table [dataSource]="dataSourceStarship">
-                  
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef> Name </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>
-                  
-                    <!-- Model Column -->
-                    <ng-container matColumnDef="model">
-                      <th mat-header-cell *matHeaderCellDef> Model </th>
-                      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
-                    </ng-container>
-                  
-                    <!-- starship_class Column -->
-                    <ng-container matColumnDef="starship_class">
-                      <th mat-header-cell *matHeaderCellDef> Starship Class </th>
-                      <td mat-cell *matCellDef="let element"> {{element.starship_class}} </td>
-                    </ng-container>
-                  
-                    <!-- manufacturer Column -->
-                    <ng-container matColumnDef="manufacturer">
-                      <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
-                      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsStarship"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsStarship;"></tr>
-                  </table>
-
-
-            </div>
-        </mat-tab>
-        <mat-tab >
-
-            <ng-template mat-tab-label>
-                <mat-icon svgIcon="sw_species"  class="example-tab-icon"></mat-icon>
-                SPECIES
-            </ng-template>
-
-            <div  class="mat-elevation-z8 basic-container">
-              
-                <table mat-table [dataSource]="dataSourceSpecies">
-                  
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef> Name </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>
-                  
-                    <!-- classification Column -->
-                    <ng-container matColumnDef="classification">
-                      <th mat-header-cell *matHeaderCellDef> Classification </th>
-                      <td mat-cell *matCellDef="let element"> {{element.classification}} </td>
-                    </ng-container>
-                  
-                    <!-- designation Column -->
-                    <ng-container matColumnDef="designation">
-                      <th mat-header-cell *matHeaderCellDef> Designation </th>
-                      <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsSpecies"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsSpecies;"></tr>
-                  </table>
-
-
-            </div>
-        </mat-tab>
-        <mat-tab label="films">
-
-            <ng-template mat-tab-label>
-                <mat-icon svgIcon="sw_film"  class="example-tab-icon"></mat-icon>
-                FILMS
-            </ng-template>
-
-            <div  class="mat-elevation-z8 basic-container">
-              
-                <table mat-table [dataSource]="dataSourceFilms">
-                  
-                    <!-- title Column -->
-                    <ng-container matColumnDef="title">
-                        <th mat-header-cell *matHeaderCellDef> Title </th>
-                        <td mat-cell *matCellDef="let element"> 
-                            <a mat-list-item [routerLink]="['/film/', element.id]" > {{element.title}} </a>
-                        </td>
-                    </ng-container>
-                  
-                    <!-- episode_id Column -->
-                    <ng-container matColumnDef="episode_id">
-                      <th mat-header-cell *matHeaderCellDef> Episode Id </th>
-                      <td mat-cell *matCellDef="let element"> {{element.episode_id}} </td>
-                    </ng-container>
-                  
-                    <!-- director Column -->
-                    <ng-container matColumnDef="director">
-                      <th mat-header-cell *matHeaderCellDef> Director </th>
-                      <td mat-cell *matCellDef="let element"> {{element.director}} </td>
-                    </ng-container>
-
-                    <!-- producer Column -->
-                    <ng-container matColumnDef="producer">
-                        <th mat-header-cell *matHeaderCellDef> Producer </th>
-                        <td mat-cell *matCellDef="let element"> {{element.producer}} </td>
-                    </ng-container>
-
-                      <!-- release_date Column -->
-                    <ng-container matColumnDef="release_date">
-                        <th mat-header-cell *matHeaderCellDef> Release date </th>
-                        <td mat-cell *matCellDef="let element"> {{element.release_date}} </td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFilms"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFilms;"></tr>
-                  </table>
-
-
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-
-
-   
-    
-
+    <router-outlet></router-outlet>
 </div>

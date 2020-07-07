@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,17 +15,17 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 @Component({
-  selector: 'app-film-tabs',
-  templateUrl: './film-tabs.component.html',
-  styleUrls: ['./film-tabs.component.css']
+  selector: 'app-species-tabs',
+  templateUrl: './species-tabs.component.html',
+  styleUrls: ['./species-tabs.component.css']
 })
-export class FilmTabsComponent implements OnInit {
+export class SpeciesTabsComponent implements OnInit {
 
-  starship : Starship;
   people : People;
+  film : Film;
   
-  displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
-  dataSourceFilms = new MatTableDataSource<Film>();
+  displayedColumnsSpecies: string[] = ['name', 'classification', 'designation'];
+  dataSourceSpecies = new MatTableDataSource<Species>();
 
 
   
@@ -45,57 +44,59 @@ export class FilmTabsComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      var starshipId = params.get('starshipId');
-      if ( starshipId ) {
-        this.starshipService.getStarship(starshipId).subscribe(data => {
-          this.starship = data;
-          this.starship.id = starshipId;
-
-          // films
-          var films = new Array<Film>();
-          this.starship.films.forEach( element=> {
-            var obs = this.filmService.getFilmFromURL(element);
-
-            obs.subscribe(data => {
-
-              var id = this.helperService.getIdFromUrl(element);
-              data.id = id; 
-
-              films.push(data);
-              this.dataSourceFilms.data = films; 
-            });
-          });
-        });
-      }
-
-
-      var peopleId = params.get('peopleId');
-      if ( peopleId ) {
-        this.peopleService.getPeople(peopleId).subscribe(data => {
+      // from people
+      var filmId = params.get('peopleId');
+      if ( filmId ) {
+        this.peopleService.getPeople(filmId).subscribe(data => {
           this.people = data;
-          this.people.id = peopleId;
+          this.people.id = filmId;
 
-          // films
-          var films = new Array<Film>();
-          this.people.films.forEach( element=> {
-            var obs = this.filmService.getFilmFromURL(element);
+          // characters
+          var species = new Array<Species>();
+          this.people.species.forEach( element=> {
+            var obs = this.speciesService.getSpeciesFromURL(element);
 
             obs.subscribe(data => {
 
               var id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
-              films.push(data);
-              this.dataSourceFilms.data = films; 
+              species.push(data);
+              this.dataSourceSpecies.data = species; 
             });
           });
+
+
         });
       }
 
+      // from film
+      var filmId = params.get('filmId');
+      if ( filmId ) {
+        this.filmService.getFilm(filmId).subscribe(data => {
+          this.film = data;
+          this.film.id = filmId;
 
+          // characters
+          var species = new Array<Species>();
+          this.film.species.forEach( element=> {
+            var obs = this.speciesService.getSpeciesFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              species.push(data);
+              this.dataSourceSpecies.data = species; 
+            });
+          });
+
+
+        });
+      }
 
     });
-    
   }
 
 

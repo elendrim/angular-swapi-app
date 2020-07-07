@@ -1,0 +1,69 @@
+<div  class="mat-elevation-z8 basic-container">
+              
+    <table mat-table [dataSource]="dataSourcePlanet">
+      
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let planet">{{planet.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell class="name-cell"
+                    *matCellDef="let planet">            
+                    <a mat-list-item [routerLink]="['/planet/', planet.id]" >{{planet.name}}</a>
+            </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="diameter">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Diameter
+            </mat-header-cell>
+            <mat-cell 
+                    *matCellDef="let planet">{{planet.diameter}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rotation_period">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Rotation period
+            </mat-header-cell>
+            <mat-cell 
+                    *matCellDef="let planet">{{planet.rotation_period}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="orbital_period">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Orbital period
+            </mat-header-cell>
+            <mat-cell 
+                    *matCellDef="let planet">{{planet.orbital_period}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gravity">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Gravity
+            </mat-header-cell>
+            <mat-cell 
+                    *matCellDef="let planet">{{planet.gravity}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="population">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Population
+            </mat-header-cell>
+            <mat-cell 
+                    *matCellDef="let planet">{{planet.population}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsPlanet"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumnsPlanet"></mat-row>
+    </table>
+
+</div>

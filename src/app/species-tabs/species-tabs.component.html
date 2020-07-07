@@ -1,0 +1,28 @@
+<div  class="mat-elevation-z8 basic-container">
+              
+    <table mat-table [dataSource]="dataSourceSpecies">
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- classification Column -->
+        <ng-container matColumnDef="classification">
+          <th mat-header-cell *matHeaderCellDef> Classification </th>
+          <td mat-cell *matCellDef="let element"> {{element.classification}} </td>
+        </ng-container>
+      
+        <!-- designation Column -->
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef> Designation </th>
+          <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsSpecies"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsSpecies;"></tr>
+      </table>
+
+
+</div>
