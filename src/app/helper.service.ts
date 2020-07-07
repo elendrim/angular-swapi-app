@@ -29,4 +29,20 @@ export class HelperService {
     // return id;
   }
 
+  getBadgeNumber(i : number ) : string {
+    if ( i >= 1000 ) {
+      var result = Math.floor(i / 1000) ;
+      return result + "k+";
+    } else if ( i > 100 ) {
+      var result = Math.floor(i / 100) * 100;
+      return result + "+";
+    } else  if ( i > 10 ) {
+      var result = Math.floor(i / 10) * 10;
+      return result + "+";
+    }
+
+    return i.toString();
+
+  }
+
 }

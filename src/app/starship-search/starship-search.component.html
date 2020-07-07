@@ -1,0 +1,72 @@
+<div class="basic-container" >
+
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <span><mat-icon svgIcon="sw_starship"  class="size-24 circle-icon top-icon background-starship"></mat-icon></span>
+
+    <mat-form-field>
+        <input matInput placeholder="Search starship" #inputSearch>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <br />
+    <br />
+
+    <mat-table class="starship-table mat-elevation-z8" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let starship">{{starship.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell class="name-cell"
+                    *matCellDef="let starship">         
+                    <a mat-list-item [routerLink]="['/starship/', starship.id]" >{{starship.name}}</a>
+            </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="manufacturer">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon" >cake</mat-icon> -->
+                Manufacturer
+            </mat-header-cell>
+            <mat-cell class="episode-id-cell"
+                    *matCellDef="let starship">{{starship.manufacturer}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="model">
+            <mat-header-cell *matHeaderCellDef>
+                <!-- <mat-icon class="example-tab-icon">visibility</mat-icon> -->
+                Model
+            </mat-header-cell>
+            <mat-cell *matCellDef="let starship">{{starship.model}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="starship_class">
+            <mat-header-cell *matHeaderCellDef>
+                Class
+            </mat-header-cell>
+            <mat-cell *matCellDef="let starship">{{starship.starship_class}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="MGLT">
+            <mat-header-cell *matHeaderCellDef>
+                MGLT
+            </mat-header-cell>
+            <mat-cell *matCellDef="let starship">{{starship.MGLT}}</mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+    <mat-paginator [length]="length" [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>

@@ -12,6 +12,11 @@ import { PeopleSearchComponent } from './people-search/people-search.component';
 import { AboutComponent } from './about/about.component';
 import { FilmSearchComponent } from './film-search/film-search.component';
 import { FilmDetailsComponent } from './film-details/film-details.component';
+import { StarshipDetailsComponent } from './starship-details/starship-details.component';
+import { StarshipPropertyComponent } from './starship-property/starship-property.component';
+import { FilmTabsComponent } from './film-tabs/film-tabs.component';
+import { PeopleTabsComponent } from './people-tabs/people-tabs.component';
+import { StarshipSearchComponent } from './starship-search/starship-search.component';
 
 
 @NgModule({
@@ -22,6 +27,11 @@ import { FilmDetailsComponent } from './film-details/film-details.component';
     AboutComponent,
     FilmSearchComponent,
     FilmDetailsComponent,
+    StarshipDetailsComponent,
+    StarshipPropertyComponent,
+    FilmTabsComponent,
+    PeopleTabsComponent,
+    StarshipSearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,18 +6,19 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {FilmService, Film} from "../film.service"
 import {HelperService} from "../helper.service"
+import { StarshipService, Starship } from '../starship.service';
 
 
 
 @Component({
-  selector: 'app-film-search',
-  templateUrl: './film-search.component.html',
-  styleUrls: ['./film-search.component.css']
+  selector: 'app-starship-search',
+  templateUrl: './starship-search.component.html',
+  styleUrls: ['./starship-search.component.css']
 })
-export class FilmSearchComponent implements AfterViewInit, OnInit {
+export class StarshipSearchComponent implements AfterViewInit, OnInit {
 
-  dataSource: FilmDataSource;
-  displayedColumns= ["id", "title", "episode_id", "director", "producer", "release_date"] ;
+  dataSource: StarshipDataSource;
+  displayedColumns= ["id", "name", "manufacturer", "model", "starship_class", "MGLT"] ;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -27,15 +28,15 @@ export class FilmSearchComponent implements AfterViewInit, OnInit {
 
 
   constructor(
-    private filmService: FilmService,
+    private starshipService: StarshipService,
     private helperService: HelperService,
   ) { }
 
   ngOnInit(): void {
-    this.dataSource = new FilmDataSource(this.filmService, this.helperService);
-    this.dataSource.loadFilm( '', '', 'asc', 0, this.pageSize);
-    this.filmService
-      .countFilm('',)
+    this.dataSource = new StarshipDataSource(this.starshipService, this.helperService);
+    this.dataSource.loadStarship( '', '', 'asc', 0, this.pageSize);
+    this.starshipService
+      .countStarship('',)
       .subscribe(data => {
         this.paginator.length = data
         this.length = data; 
@@ -51,28 +52,28 @@ export class FilmSearchComponent implements AfterViewInit, OnInit {
         distinctUntilChanged(),
         tap(() => {
             this.paginator.pageIndex = 0;
-            this.loadFilmPage();
+            this.loadStarshipPage();
         })
     )
     .subscribe();
 
     this.paginator.page
         .pipe(
-            tap(() => this.loadFilmPage())
+            tap(() => this.loadStarshipPage())
         )
         .subscribe();
   }
 
-  loadFilmPage() {
+  loadStarshipPage() {
 
-    this.filmService
-      .countFilm(this.input.nativeElement.value)
+    this.starshipService
+      .countStarship(this.input.nativeElement.value)
       .subscribe(data => {
         this.paginator.length = data
         this.length = data; 
       });
 
-    this.dataSource.loadFilm(
+    this.dataSource.loadStarship(
         this.input.nativeElement.value,
         '',
         'asc',
@@ -83,44 +84,44 @@ export class FilmSearchComponent implements AfterViewInit, OnInit {
 }
 
 
-export class FilmDataSource implements DataSource<Film> {
+export class StarshipDataSource implements DataSource<Starship> {
 
-  private filmSubject = new BehaviorSubject<Film[]>([]);
+  private starshipSubject = new BehaviorSubject<Starship[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
   constructor(
-    private filmService: FilmService,
+    private starshipService: StarshipService,
     private helperService: HelperService,
   ) {}
 
-  connect(collectionViewer: CollectionViewer): Observable<Film[]> {
-    return this.filmSubject.asObservable();
+  connect(collectionViewer: CollectionViewer): Observable<Starship[]> {
+    return this.starshipSubject.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.filmSubject.complete();
+    this.starshipSubject.complete();
     this.loadingSubject.complete();
   }
 
-  loadFilm(search: string, 
+  loadStarship(search: string, 
               ordering: string, sortOrder: string, pageNumber: number, pageSize: number) : void {
     this.loadingSubject.next(true);
 
-    this.filmService.findFilm(search, ordering, sortOrder,
+    this.starshipService.findStarship(search, ordering, sortOrder,
         pageNumber, pageSize).pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
     )
-    .subscribe(filmTab => {
+    .subscribe(starshipTab => {
 
-      filmTab.forEach(film => {
-        var id = this.helperService.getIdFromUrl(film.url);
-        film.id = id;  
+      starshipTab.forEach(starship => {
+        var id = this.helperService.getIdFromUrl(starship.url);
+        starship.id = id;  
       });
       
-      this.filmSubject.next(filmTab);
+      this.starshipSubject.next(starshipTab);
     });
 
   }  

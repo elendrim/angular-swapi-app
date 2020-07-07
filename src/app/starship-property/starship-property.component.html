@@ -1,0 +1,185 @@
+<div *ngIf="starship" class="mat-elevation-z8 basic-container">
+
+    <img class="details-img" src="https://starwars-visualguide.com/assets/img/starships/{{starship.id}}.jpg" onerror="this.style.display='none'"/>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Id
+        </div>
+        <div class="example-button-row">
+            {{starship.id}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Name
+        </div>
+        <div class="example-button-row">
+            {{starship.name}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Model
+        </div>
+        <div class="example-button-row">
+            {{starship.model}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Manufacturer
+        </div>
+        <div class="example-button-row">
+            {{starship.manufacturer}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Class
+        </div>
+        <div class="example-button-row">
+            {{starship.starship_class}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            MGLT
+        </div>
+        <div class="example-button-row">
+            {{starship.MGLT}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Cargo capacity
+        </div>
+        <div class="example-button-row">
+            {{starship.cargo_capacity}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Consumables
+        </div>
+        <div class="example-button-row">
+            {{starship.consumables}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Costs
+        </div>
+        <div class="example-button-row">
+            {{starship.cost_in_credits}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Mimimum Crew
+        </div>
+        <div class="example-button-row">
+            {{starship.crew}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Hyperdrive Rating
+        </div>
+        <div class="example-button-row">
+            {{starship.hyperdrive_rating}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Length
+        </div>
+        <div class="example-button-row">
+            {{starship.length}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Speed
+        </div>
+        <div class="example-button-row">
+            {{starship.max_atmosphering_speed}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Passengers
+        </div>
+        <div class="example-button-row">
+            {{starship.passengers}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+   
+    
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Created
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="starship.created">{{starship.created | date:'medium'}}</span>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Edited
+        </div>
+        <div class="example-button-row">
+            <span *ngIf="starship.created">{{starship.edited | date:'medium'}}</span>
+        </div>
+    </section>
+</div>
