@@ -135,4 +135,14 @@ table {
     margin-right: 8px;
 }
   
-  
+.details-img  {
+    float:right;
+    background-position: center 20%;
+    background-size: cover;
+    height: 100%;
+    display: block;
+    margin-left: 5%;
+    width: 20%;
+    border-radius: 1em;
+}
+

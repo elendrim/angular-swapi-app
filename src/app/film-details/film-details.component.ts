@@ -12,6 +12,7 @@ import { SpeciesService, Species } from '../species.service';
 import { FilmService, Film } from '../film.service';
 import { PlanetService, Planet } from '../planet.service';
 import { HelperService } from '../helper.service';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
@@ -40,7 +41,12 @@ export class FilmDetailsComponent implements OnInit {
   displayedColumnsPlanet: string[] = ['name', 'diameter', 'rotation_period', 'orbital_period', 'gravity', 'population'];
   dataSourcePlanet = new MatTableDataSource<Planet>();
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild('tabGroup') set localTabGroup(localTabGroup: MatTabGroup) {
+    if(localTabGroup) { // initially setter gets called with undefined
+        var index : string = localStorage.getItem('filmDetailsTabLocation') || "0"; // get stored number or zero if there is nothing stored
+        localTabGroup.selectedIndex = parseInt(index); // with tabGroup being the MatTabGroup accessed through ViewChild
+    }
+ }
 
   constructor(
     private route: ActivatedRoute,
@@ -54,8 +60,7 @@ export class FilmDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataSourceVehicle.paginator = this.paginator;
-
+    
     this.route.paramMap.subscribe(params => {
       
       var id = params.get('filmId');
@@ -134,6 +139,10 @@ export class FilmDetailsComponent implements OnInit {
 
       });
     });
+  }
+  
+  handleMatTabChange(event: MatTabChangeEvent) : void {
+    localStorage.setItem('filmDetailsTabLocation', event.index.toString());
   }
 
 }

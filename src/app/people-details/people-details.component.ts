@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
@@ -10,6 +10,7 @@ import { SpeciesService, Species } from '../species.service';
 import { FilmService, Film } from '../film.service';
 import { PlanetService, Planet } from '../planet.service';
 import { HelperService } from '../helper.service';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 @Component({
@@ -36,8 +37,16 @@ export class PeopleDetailsComponent implements OnInit {
   displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
   dataSourceFilms = new MatTableDataSource<Film>();
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+
+  @ViewChild('tabGroup') set localTabGroup(localTabGroup: MatTabGroup) {
+    if(localTabGroup) { // initially setter gets called with undefined
+        var index : string = localStorage.getItem('peopleDetailsTabLocation') || "0"; // get stored number or zero if there is nothing stored
+        localTabGroup.selectedIndex = parseInt(index); // with tabGroup being the MatTabGroup accessed through ViewChild
+    }
+ }
+
+  
   constructor(
     private route: ActivatedRoute,
     private peopleService: PeopleService,
@@ -50,8 +59,7 @@ export class PeopleDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataSourceVehicle.paginator = this.paginator;
-
+    
     this.route.paramMap.subscribe(params => {
       
       var id = params.get('peopleId');
@@ -127,6 +135,12 @@ export class PeopleDetailsComponent implements OnInit {
 
       });
     });
+  }
+
+
+
+  handleMatTabChange(event: MatTabChangeEvent) : void {
+    localStorage.setItem('peopleDetailsTabLocation', event.index.toString());
   }
 
 }

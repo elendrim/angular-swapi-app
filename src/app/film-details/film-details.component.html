@@ -8,7 +8,7 @@
     </h2>
     
 
-    <mat-tab-group>
+    <mat-tab-group #tabGroup (selectedTabChange)="handleMatTabChange($event)" *ngIf="film"> 
 
         <mat-tab>
             <ng-template mat-tab-label>
@@ -16,6 +16,8 @@
             PROPERTIES
             </ng-template>
             <div  class="mat-elevation-z8 basic-container">
+
+                <img class="details-img" src="https://starwars-visualguide.com/assets/img/films/{{film.id}}.jpg" />
 
                 <section>
                     <div class="example-label">

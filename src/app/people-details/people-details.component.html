@@ -8,14 +8,17 @@
     </h2>
     
 
-    <mat-tab-group>
-
+    <mat-tab-group #tabGroup (selectedTabChange)="handleMatTabChange($event)" *ngIf="people">
+        
         <mat-tab>
             <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">list</mat-icon>
             PROPERTIES
             </ng-template>
+
             <div  class="mat-elevation-z8 basic-container">
+
+                <img class="details-img" src="https://starwars-visualguide.com/assets/img/characters/{{people.id}}.jpg" />
 
                 <section>
                     <div class="example-label">
