@@ -22,6 +22,7 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 export class PeoplePropertyComponent implements OnInit {
 
   people : People;
+  homeworld : Planet;
   
 
   constructor(
@@ -44,7 +45,21 @@ export class PeoplePropertyComponent implements OnInit {
       this.peopleService.getPeople(id).subscribe(data => {
         this.people = data;
         this.people.id = id;
+
+        // homeworld
+        var obs = this.planetService.getPlanetFromURL(this.people.homeworld);
+        obs.subscribe(planet => {
+
+          var planetId = this.helperService.getIdFromUrl(this.people.homeworld);
+          
+          this.homeworld = planet; 
+          this.homeworld.id = planetId;
+
+        });
       });
+
+      
+
     });
   }
 
