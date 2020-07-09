@@ -24,6 +24,7 @@ export class FilmTabsComponent implements OnInit {
 
   starship : Starship;
   people : People;
+  planet : Planet;
   
   displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
   dataSourceFilms = new MatTableDataSource<Film>();
@@ -45,6 +46,8 @@ export class FilmTabsComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
+
+      // from starship
       var starshipId = params.get('starshipId');
       if ( starshipId ) {
         this.starshipService.getStarship(starshipId).subscribe(data => {
@@ -68,16 +71,41 @@ export class FilmTabsComponent implements OnInit {
         });
       }
 
-
-      var peopleId = params.get('peopleId');
-      if ( peopleId ) {
-        this.peopleService.getPeople(peopleId).subscribe(data => {
+      // from people
+      var planetId = params.get('peopleId');
+      if ( planetId ) {
+        this.peopleService.getPeople(planetId).subscribe(data => {
           this.people = data;
-          this.people.id = peopleId;
+          this.people.id = planetId;
 
           // films
           var films = new Array<Film>();
           this.people.films.forEach( element=> {
+            var obs = this.filmService.getFilmFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              films.push(data);
+              this.dataSourceFilms.data = films; 
+            });
+          });
+        });
+      }
+
+
+      // from planet
+      var planetId = params.get('planetId');
+      if ( planetId ) {
+        this.planetService.getPlanet(planetId).subscribe(data => {
+          this.planet = data;
+          this.planet.id = planetId;
+
+          // films
+          var films = new Array<Film>();
+          this.planet.films.forEach( element=> {
             var obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {

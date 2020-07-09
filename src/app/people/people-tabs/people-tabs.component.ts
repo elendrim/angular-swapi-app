@@ -23,6 +23,7 @@ export class PeopleTabsComponent implements OnInit {
 
   starship : Starship;
   film : Film;
+  planet : Planet;
   
   displayedColumnsPeople: string[] = ['name', 'birth_year', 'eye_color', 'gender', 'hair_color', 'height'];
   dataSourcePeople = new MatTableDataSource<People>();
@@ -97,7 +98,36 @@ export class PeopleTabsComponent implements OnInit {
 
         });
       }
+
+      // from planet
+      var planetId = params.get('planetId');
+      if ( planetId ) {
+
+        this.planetService.getPlanet(planetId).subscribe(data => {
+          this.planet = data;
+          this.planet.id = planetId;
+
+          // characters
+          var people = new Array<People>();
+          this.planet.residents.forEach( element=> {
+            var obs = this.peopleService.getPeopleFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              people.push(data);
+              this.dataSourcePeople.data = people; 
+            });
+          });
+
+
+        });
+      }
+      
     });
+
   }
 
 

@@ -23,6 +23,9 @@ import { StarshipTabsComponent } from './starship/starship-tabs/starship-tabs.co
 import { SpeciesTabsComponent } from './species/species-tabs/species-tabs.component';
 import { FilmPropertyComponent } from './film/film-property/film-property.component';
 import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component';
+import { PlanetSearchComponent } from './planet/planet-search/planet-search.component';
+import { PlanetDetailsComponent } from './planet/planet-details/planet-details.component';
+import { PlanetPropertyComponent } from './planet/planet-property/planet-property.component';
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component'
     SpeciesTabsComponent,
     FilmPropertyComponent,
     PlanetTabsComponent,
+    PlanetSearchComponent,
+    PlanetDetailsComponent,
+    PlanetPropertyComponent,
   ],
   imports: [
     BrowserModule,

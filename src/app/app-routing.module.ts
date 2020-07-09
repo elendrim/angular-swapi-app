@@ -16,6 +16,9 @@ import { StarshipTabsComponent } from './starship/starship-tabs/starship-tabs.co
 import { SpeciesTabsComponent } from './species/species-tabs/species-tabs.component';
 import { FilmPropertyComponent } from './film/film-property/film-property.component';
 import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component';
+import { PlanetSearchComponent } from './planet/planet-search/planet-search.component';
+import { PlanetDetailsComponent } from './planet/planet-details/planet-details.component';
+import { PlanetPropertyComponent } from './planet/planet-property/planet-property.component';
 
 
 const routes: Routes = [
@@ -94,6 +97,27 @@ const routes: Routes = [
       {
         path: 'pilots',
         component: PeopleTabsComponent 
+      }
+    ]
+
+  },
+
+
+  { path: 'planet/search', component: PlanetSearchComponent },
+  { path: 'planet/:planetId', redirectTo: '/planet/:planetId/property', pathMatch: 'full' },
+  { path: 'planet/:planetId', component: PlanetDetailsComponent,
+    children: [
+      {
+        path: 'property', 
+        component: PlanetPropertyComponent
+      },
+      {
+        path: 'residents',
+        component: PeopleTabsComponent 
+      },
+      {
+        path: 'films',
+        component: FilmTabsComponent 
       }
     ]
 
