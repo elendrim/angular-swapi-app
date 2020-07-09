@@ -7,22 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularMaterialModule } from './angular-material.module';
 import { AppComponent } from './app.component';
-import { PeopleDetailsComponent } from './people-details/people-details.component';
-import { PeopleSearchComponent } from './people-search/people-search.component';
+import { PeopleDetailsComponent } from './people/people-details/people-details.component';
+import { PeopleSearchComponent } from './people/people-search/people-search.component';
 import { AboutComponent } from './about/about.component';
-import { FilmSearchComponent } from './film-search/film-search.component';
-import { FilmDetailsComponent } from './film-details/film-details.component';
-import { StarshipDetailsComponent } from './starship-details/starship-details.component';
-import { StarshipPropertyComponent } from './starship-property/starship-property.component';
-import { FilmTabsComponent } from './film-tabs/film-tabs.component';
-import { PeopleTabsComponent } from './people-tabs/people-tabs.component';
-import { StarshipSearchComponent } from './starship-search/starship-search.component';
-import { PeoplePropertyComponent } from './people-property/people-property.component';
-import { VehicleTabsComponent } from './vehicle-tabs/vehicle-tabs.component';
-import { StarshipTabsComponent } from './starship-tabs/starship-tabs.component';
-import { SpeciesTabsComponent } from './species-tabs/species-tabs.component';
-import { FilmPropertyComponent } from './film-property/film-property.component';
-import { PlanetTabsComponent } from './planet-tabs/planet-tabs.component';
+import { FilmSearchComponent } from './film/film-search/film-search.component';
+import { FilmDetailsComponent } from './film/film-details/film-details.component';
+import { StarshipDetailsComponent } from './starship/starship-details/starship-details.component';
+import { StarshipPropertyComponent } from './starship/starship-property/starship-property.component';
+import { FilmTabsComponent } from './film/film-tabs/film-tabs.component';
+import { PeopleTabsComponent } from './people/people-tabs/people-tabs.component';
+import { StarshipSearchComponent } from './starship/starship-search/starship-search.component';
+import { PeoplePropertyComponent } from './people/people-property/people-property.component';
+import { VehicleTabsComponent } from './vehicle/vehicle-tabs/vehicle-tabs.component';
+import { StarshipTabsComponent } from './starship/starship-tabs/starship-tabs.component';
+import { SpeciesTabsComponent } from './species/species-tabs/species-tabs.component';
+import { FilmPropertyComponent } from './film/film-property/film-property.component';
+import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component';
 
 
 @NgModule({
