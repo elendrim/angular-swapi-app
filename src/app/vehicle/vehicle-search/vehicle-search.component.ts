@@ -26,14 +26,14 @@ export class VehicleSearchComponent implements AfterViewInit, OnInit {
 
 
   constructor(
-    private vehiculeService: VehicleService,
+    private vehicleService: VehicleService, 
     private helperService: HelperService,
   ) { }
 
   ngOnInit(): void {
-    this.dataSource = new VehicleDataSource(this.vehiculeService, this.helperService);
+    this.dataSource = new VehicleDataSource(this.vehicleService, this.helperService);
     this.dataSource.loadVehicle( '', '', 'asc', 0, this.pageSize);
-    this.vehiculeService
+    this.vehicleService
       .countVehicle('',)
       .subscribe(data => {
         this.paginator.length = data
