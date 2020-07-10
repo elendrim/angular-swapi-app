@@ -1,26 +1,15 @@
 <div class="basic-container" >   
-
-    <div fxLayout="row" fxLayoutGap="20px">
-        <div>1. One</div> 
-        <div>2. Two</div> 
-        <div>3. Three</div> 
-        <div>4. Four</div>
-    </div>
-
-<!--     
+      
 
     <mat-grid-list cols="3"  rowHeight="20:11" gutterSize="20px" >
 
         <mat-grid-tile class="background-people"> 
-           
-                <a [routerLink]="['/people/search']" >
-                    <img src = "assets/icons/radiusss/finn_by_radiusss.svg"  class="tile-image" alt="people"/>
-                    <mat-grid-tile-footer>
-                        People
-                    </mat-grid-tile-footer>
-                </a> 
-            </div>
-            
+            <a [routerLink]="['/people/search']" class="tile-a">
+                <mat-icon svgIcon="sw_people"  alt="people" class="tile-image"></mat-icon>
+                <mat-grid-tile-footer>
+                    People
+                </mat-grid-tile-footer>
+            </a> 
         </mat-grid-tile>
 
         <mat-grid-tile class="background-film">
@@ -33,31 +22,40 @@
         </mat-grid-tile>
 
         <mat-grid-tile class="background-starship">
-            <mat-icon svgIcon="sw_starship"  alt="starship" class="tile-image"></mat-icon>
-            <mat-grid-tile-footer>
-                Starship
-            </mat-grid-tile-footer>
+            <a [routerLink]="['/starship/search']" class="tile-a">
+                <mat-icon svgIcon="sw_starship"  alt="starship" class="tile-image"></mat-icon>
+                <mat-grid-tile-footer>
+                    Starship
+                </mat-grid-tile-footer>
+            </a>
         </mat-grid-tile>
 
         <mat-grid-tile class="background-planet">
-            <mat-icon svgIcon="sw_planet"  alt="planet" class="tile-image"></mat-icon>
-            <mat-grid-tile-footer>
-                Planet
-            </mat-grid-tile-footer>
+
+            <a [routerLink]="['/planet/search']" class="tile-a">
+                <mat-icon svgIcon="sw_planet"  alt="planet" class="tile-image"></mat-icon>
+                <mat-grid-tile-footer>
+                    Planet
+                </mat-grid-tile-footer>
+            </a>
         </mat-grid-tile>
 
         <mat-grid-tile class="background-species">
-            <mat-icon svgIcon="sw_species"  alt="species" class="tile-image"></mat-icon>
-            <mat-grid-tile-footer>
-                Species
-            </mat-grid-tile-footer>
+            <a [routerLink]="['/species/search']" class="tile-a">
+                <mat-icon svgIcon="sw_species"  alt="species" class="tile-image"></mat-icon>
+                <mat-grid-tile-footer>
+                    Species
+                </mat-grid-tile-footer>
+            </a>
         </mat-grid-tile>
 
         <mat-grid-tile class="background-vehicle">
-            <mat-icon svgIcon="sw_vehicle"  alt="vehicle" class="tile-image"></mat-icon>
-            <mat-grid-tile-footer>
-                Vehicle
-            </mat-grid-tile-footer>
+            <a [routerLink]="['/vehicle/search']" class="tile-a">
+                <mat-icon svgIcon="sw_vehicle"  alt="vehicle" class="tile-image"></mat-icon>
+                <mat-grid-tile-footer>
+                    Vehicle
+                </mat-grid-tile-footer>
+            </a>
         </mat-grid-tile>
-    </mat-grid-list> -->
+    </mat-grid-list> 
 </div>
