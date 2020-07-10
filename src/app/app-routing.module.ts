@@ -25,10 +25,15 @@ import { SpeciesPropertyComponent } from './species/species-property/species-pro
 import { VehicleSearchComponent } from './vehicle/vehicle-search/vehicle-search.component';
 import { VehicleDetailsComponent } from './vehicle/vehicle-details/vehicle-details.component';
 import { VehiclePropertyComponent } from './vehicle/vehicle-property/vehicle-property.component';
+import { IndexComponent } from './index/index.component';
 
 
 const routes: Routes = [
   
+  { path: '', redirectTo: '/index', pathMatch: 'full'  },
+
+  { path: 'index', component: IndexComponent },
+
   { path: 'people/search', component: PeopleSearchComponent },
   { path: 'people/:peopleId', redirectTo: '/people/:peopleId/property', pathMatch: 'full' },
   { path: 'people/:peopleId', component: PeopleDetailsComponent,

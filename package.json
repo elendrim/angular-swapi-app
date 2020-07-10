@@ -1,6 +1,6 @@
 {
   "name": "angular-swapi-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,6 +17,7 @@
     "@angular/compiler": "~9.1.11",
     "@angular/core": "~9.1.11",
     "@angular/fire": "^6.0.2",
+    "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~9.1.11",
     "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~9.1.11",

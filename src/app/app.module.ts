@@ -32,6 +32,7 @@ import { SpeciesPropertyComponent } from './species/species-property/species-pro
 import { VehiclePropertyComponent } from './vehicle/vehicle-property/vehicle-property.component';
 import { VehicleSearchComponent } from './vehicle/vehicle-search/vehicle-search.component';
 import { VehicleDetailsComponent } from './vehicle/vehicle-details/vehicle-details.component';
+import { IndexComponent } from './index/index.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { VehicleDetailsComponent } from './vehicle/vehicle-details/vehicle-detai
     VehiclePropertyComponent,
     VehicleSearchComponent,
     VehicleDetailsComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
