@@ -29,6 +29,9 @@ import { PlanetPropertyComponent } from './planet/planet-property/planet-propert
 import { SpeciesSearchComponent } from './species/species-search/species-search.component';
 import { SpeciesDetailsComponent } from './species/species-details/species-details.component';
 import { SpeciesPropertyComponent } from './species/species-property/species-property.component';
+import { VehiclePropertyComponent } from './vehicle/vehicle-property/vehicle-property.component';
+import { VehicleSearchComponent } from './vehicle/vehicle-search/vehicle-search.component';
+import { VehicleDetailsComponent } from './vehicle/vehicle-details/vehicle-details.component';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { SpeciesPropertyComponent } from './species/species-property/species-pro
     SpeciesSearchComponent,
     SpeciesDetailsComponent,
     SpeciesPropertyComponent,
+    VehiclePropertyComponent,
+    VehicleSearchComponent,
+    VehicleDetailsComponent,
   ],
   imports: [
     BrowserModule,

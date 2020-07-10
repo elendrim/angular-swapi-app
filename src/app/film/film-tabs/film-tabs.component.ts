@@ -26,6 +26,7 @@ export class FilmTabsComponent implements OnInit {
   people : People;
   planet : Planet;
   species : Species;
+  vehicle : Vehicle;
   
   displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
   dataSourceFilms = new MatTableDataSource<Film>();
@@ -133,6 +134,32 @@ export class FilmTabsComponent implements OnInit {
           // films
           var films = new Array<Film>();
           this.species.films.forEach( element=> {
+            var obs = this.filmService.getFilmFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              films.push(data);
+              this.dataSourceFilms.data = films; 
+            });
+          });
+   
+        });
+      }
+
+
+      // from vehicle
+      var vehicleId = params.get('vehicleId');
+      if ( vehicleId ) {
+        this.vehicleService.getVehicle(vehicleId).subscribe(data => {
+          this.vehicle = data;
+          this.vehicle.id = planetId;
+
+          // films
+          var films = new Array<Film>();
+          this.vehicle.films.forEach( element=> {
             var obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {

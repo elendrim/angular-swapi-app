@@ -22,6 +22,9 @@ import { PlanetPropertyComponent } from './planet/planet-property/planet-propert
 import { SpeciesSearchComponent } from './species/species-search/species-search.component';
 import { SpeciesDetailsComponent } from './species/species-details/species-details.component';
 import { SpeciesPropertyComponent } from './species/species-property/species-property.component';
+import { VehicleSearchComponent } from './vehicle/vehicle-search/vehicle-search.component';
+import { VehicleDetailsComponent } from './vehicle/vehicle-details/vehicle-details.component';
+import { VehiclePropertyComponent } from './vehicle/vehicle-property/vehicle-property.component';
 
 
 const routes: Routes = [
@@ -137,6 +140,25 @@ const routes: Routes = [
       },
       {
         path: 'people', 
+        component: PeopleTabsComponent
+      },
+      {
+        path: 'films',
+        component: FilmTabsComponent 
+      }
+    ]
+  },
+
+  { path: 'vehicle/search', component: VehicleSearchComponent },
+  { path: 'vehicle/:vehicleId', redirectTo: '/vehicle/:vehicleId/property', pathMatch: 'full' },
+  { path: 'vehicle/:vehicleId', component: VehicleDetailsComponent,
+    children: [
+      {
+        path: 'property', 
+        component: VehiclePropertyComponent
+      },
+      {
+        path: 'pilots', 
         component: PeopleTabsComponent
       },
       {

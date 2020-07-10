@@ -15,13 +15,16 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 @Component({
-  selector: 'app-starship-property',
-  templateUrl: './starship-property.component.html',
-  styleUrls: ['./starship-property.component.css']
+  selector: 'app-vehicle-details',
+  templateUrl: './vehicle-details.component.html',
+  styleUrls: ['./vehicle-details.component.css']
 })
-export class StarshipPropertyComponent implements OnInit {
+export class VehicleDetailsComponent implements OnInit {
 
-  starship : Starship;
+  vehicle : Vehicle;
+
+  countFilms : string;
+  countPilots : string;
   
 
   constructor(
@@ -37,12 +40,15 @@ export class StarshipPropertyComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.route.parent.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       
-      var id = params.get('starshipId');
-      this.starshipService.getStarship(id).subscribe(data => {
-        this.starship = data;
-        this.starship.id = id;
+      var id = params.get('vehicleId');
+
+      this.vehicleService.getVehicle(id).subscribe(data => {
+        this.vehicle = data;
+        this.vehicle.id = id;
+        this.countFilms = this.helperService.getBadgeNumber(data.films.length);
+        this.countPilots = this.helperService.getBadgeNumber(data.pilots.length);
       });
     });
   }

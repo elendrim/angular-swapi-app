@@ -25,6 +25,7 @@ export class PeopleTabsComponent implements OnInit {
   film : Film;
   planet : Planet;
   species : Species;
+  vehicle : Vehicle;
   
   displayedColumnsPeople: string[] = ['name', 'birth_year', 'eye_color', 'gender', 'hair_color', 'height'];
   dataSourcePeople = new MatTableDataSource<People>();
@@ -139,6 +140,34 @@ export class PeopleTabsComponent implements OnInit {
           // characters
           var people = new Array<People>();
           this.species.people.forEach( element=> {
+            var obs = this.peopleService.getPeopleFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              people.push(data);
+              this.dataSourcePeople.data = people; 
+            });
+          });
+
+
+        });
+      }
+
+
+      // from vehicle
+      var vehicleId = params.get('vehicleId');
+      if ( vehicleId ) {
+
+        this.vehicleService.getVehicle(vehicleId).subscribe(data => {
+          this.vehicle = data;
+          this.vehicle.id = vehicleId;
+
+          // characters
+          var people = new Array<People>();
+          this.vehicle.pilots.forEach( element=> {
             var obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
