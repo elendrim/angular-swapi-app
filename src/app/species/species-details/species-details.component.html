@@ -1,0 +1,45 @@
+
+<div *ngIf="species" class="basic-container" >    
+
+    <h2>
+        <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
+        <span>{{species.name}}</span>
+    </h2>
+        
+    <nav mat-tab-nav-bar>
+
+        <!-- properties -->
+        <a mat-tab-link
+        [routerLink]="['/species', species.id ,'property']"
+        routerLinkActive #rla1="routerLinkActive"
+        [active]="rla1.isActive">
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            PROPERTIES
+        </a>
+
+        <!-- people -->
+        <a mat-tab-link
+        [routerLink]="['/species', species.id ,'people']"
+        routerLinkActive #rla2="routerLinkActive"
+        [active]="rla2.isActive">
+            <mat-icon svgIcon="sw_people" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countPeople}}" matBadgeSize="small" matBadgeOverlap="false">PEOPLE</span>
+        </a>
+
+        <!-- film -->
+        <a mat-tab-link
+        [routerLink]="['/species', species.id ,'films']"
+        routerLinkActive #rla3="routerLinkActive"
+        [active]="rla3.isActive">
+            <mat-icon svgIcon="sw_film" class="example-tab-icon"></mat-icon>
+            <span matBadge="{{countFilms}}" matBadgeSize="small" matBadgeOverlap="false">FILMS</span>
+        </a>
+
+
+        
+
+        
+    </nav>
+
+    <router-outlet></router-outlet>
+</div>

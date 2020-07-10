@@ -24,6 +24,7 @@ export class PeopleTabsComponent implements OnInit {
   starship : Starship;
   film : Film;
   planet : Planet;
+  species : Species;
   
   displayedColumnsPeople: string[] = ['name', 'birth_year', 'eye_color', 'gender', 'hair_color', 'height'];
   dataSourcePeople = new MatTableDataSource<People>();
@@ -46,12 +47,12 @@ export class PeopleTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from starships
-      var filmId = params.get('starshipId');
-      if ( filmId ) {
+      var starshipId = params.get('starshipId');
+      if ( starshipId ) {
 
-        this.starshipService.getStarship(filmId).subscribe(data => {
+        this.starshipService.getStarship(starshipId).subscribe(data => {
           this.starship = data;
-          this.starship.id = filmId;
+          this.starship.id = starshipId;
 
           // characters
           var people = new Array<People>();
@@ -110,6 +111,34 @@ export class PeopleTabsComponent implements OnInit {
           // characters
           var people = new Array<People>();
           this.planet.residents.forEach( element=> {
+            var obs = this.peopleService.getPeopleFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              people.push(data);
+              this.dataSourcePeople.data = people; 
+            });
+          });
+
+
+        });
+      }
+
+
+      // from species
+      var speciesId = params.get('speciesId');
+      if ( speciesId ) {
+
+        this.speciesService.getSpecies(speciesId).subscribe(data => {
+          this.species = data;
+          this.species.id = speciesId;
+
+          // characters
+          var people = new Array<People>();
+          this.species.people.forEach( element=> {
             var obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {

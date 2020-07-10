@@ -25,6 +25,7 @@ export class FilmTabsComponent implements OnInit {
   starship : Starship;
   people : People;
   planet : Planet;
+  species : Species;
   
   displayedColumnsFilms: string[] = ['title', 'episode_id', 'director', 'producer',];
   dataSourceFilms = new MatTableDataSource<Film>();
@@ -117,6 +118,33 @@ export class FilmTabsComponent implements OnInit {
               this.dataSourceFilms.data = films; 
             });
           });
+          
+        });
+      }
+
+
+      // from species
+      var speciesId = params.get('speciesId');
+      if ( speciesId ) {
+        this.speciesService.getSpecies(speciesId).subscribe(data => {
+          this.species = data;
+          this.species.id = planetId;
+
+          // films
+          var films = new Array<Film>();
+          this.species.films.forEach( element=> {
+            var obs = this.filmService.getFilmFromURL(element);
+
+            obs.subscribe(data => {
+
+              var id = this.helperService.getIdFromUrl(element);
+              data.id = id; 
+
+              films.push(data);
+              this.dataSourceFilms.data = films; 
+            });
+          });
+   
         });
       }
 

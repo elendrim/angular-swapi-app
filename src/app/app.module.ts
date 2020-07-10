@@ -26,6 +26,9 @@ import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component'
 import { PlanetSearchComponent } from './planet/planet-search/planet-search.component';
 import { PlanetDetailsComponent } from './planet/planet-details/planet-details.component';
 import { PlanetPropertyComponent } from './planet/planet-property/planet-property.component';
+import { SpeciesSearchComponent } from './species/species-search/species-search.component';
+import { SpeciesDetailsComponent } from './species/species-details/species-details.component';
+import { SpeciesPropertyComponent } from './species/species-property/species-property.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { PlanetPropertyComponent } from './planet/planet-property/planet-propert
     PlanetSearchComponent,
     PlanetDetailsComponent,
     PlanetPropertyComponent,
+    SpeciesSearchComponent,
+    SpeciesDetailsComponent,
+    SpeciesPropertyComponent,
   ],
   imports: [
     BrowserModule,

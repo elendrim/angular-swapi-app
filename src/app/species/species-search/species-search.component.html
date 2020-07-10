@@ -1,0 +1,76 @@
+<div class="basic-container" >
+
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
+
+    <mat-form-field>
+        <input matInput placeholder="Search species" #inputSearch>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <br />
+    <br />
+
+    <mat-table class="species-table mat-elevation-z8" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+            <mat-cell class="name-cell"
+                    *matCellDef="let species">            
+                    <a mat-list-item [routerLink]="['/species/', species.id]" >{{species.name}}</a>
+            </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="classification">
+            <mat-header-cell *matHeaderCellDef>
+                Classification
+            </mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.classification}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+            <mat-header-cell *matHeaderCellDef>
+                Designation
+            </mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.designation}}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="average_height">
+            <mat-header-cell *matHeaderCellDef>
+                Average height
+            </mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.average_height}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="average_lifespan">
+            <mat-header-cell *matHeaderCellDef>
+                Average lifespan
+            </mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.average_lifespan}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="language">
+            <mat-header-cell *matHeaderCellDef>
+                Language
+            </mat-header-cell>
+            <mat-cell *matCellDef="let species">{{species.language}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+    <mat-paginator [length]="length" [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>

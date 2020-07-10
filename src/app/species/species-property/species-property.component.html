@@ -1,6 +1,6 @@
-<div *ngIf="planet" class="mat-elevation-z8 basic-container">
+<div *ngIf="species" class="mat-elevation-z8 basic-container">
 
-    <img class="details-img" src="https://starwars-visualguide.com/assets/img/planets/{{planet.id}}.jpg" onerror="this.style.display='none'" />
+    <img class="details-img" src="https://starwars-visualguide.com/assets/img/species/{{species.id}}.jpg" onerror="this.style.display='none'" />
 
     <section>
         <div class="example-label">
@@ -8,7 +8,7 @@
             Id
         </div>
         <div class="example-button-row">
-            {{planet.id}}
+            {{species.id}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -19,7 +19,7 @@
             Name
         </div>
         <div class="example-button-row">
-            {{planet.name}}
+            {{species.name}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -27,10 +27,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Diameter
+            Classification
         </div>
         <div class="example-button-row">
-            {{planet.diameter}}
+            {{species.classification}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -38,10 +38,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Rotation period
+            Designation
         </div>
         <div class="example-button-row">
-            {{planet.rotation_period}}
+            {{species.designation}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -49,10 +49,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Orbital period
+            Average height
         </div>
         <div class="example-button-row">
-            {{planet.orbital_period}}
+            {{species.average_height}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -61,10 +61,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Gravity
+            Average lifespan
         </div>
         <div class="example-button-row">
-            {{planet.gravity}}
+            {{species.average_lifespan}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -72,10 +72,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Population
+            Eye colors
         </div>
         <div class="example-button-row">
-            {{planet.population}}
+            {{species.eye_colors}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -83,10 +83,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Climate
+            Hair colors
         </div>
         <div class="example-button-row">
-            {{planet.climate}}
+            {{species.hair_colors}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -94,10 +94,10 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Terrain
+            Skin colors
         </div>
         <div class="example-button-row">
-            {{planet.terrain}}
+            {{species.skin_colors}}
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -105,10 +105,21 @@
     <section>
         <div class="example-label">
             <mat-icon class="example-tab-icon">vide</mat-icon>
-            Surface water
+            Language
         </div>
         <div class="example-button-row">
-            {{planet.surface_water}}
+            {{species.language}}
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+        <div class="example-label">
+            <mat-icon class="example-tab-icon">vide</mat-icon>
+            Homeworld
+        </div>
+        <div class="example-button-row">
+            <a mat-list-item [routerLink]="['/planet/', homeworld.id]" > {{homeworld.name}} </a>
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -119,7 +130,7 @@
             Created
         </div>
         <div class="example-button-row">
-            <span *ngIf="planet.created">{{planet.created | date:'medium'}}</span>
+            <span *ngIf="species.created">{{species.created | date:'medium'}}</span>
         </div>
     </section>
     <mat-divider></mat-divider>
@@ -130,7 +141,7 @@
             Edited
         </div>
         <div class="example-button-row">
-            <span *ngIf="planet.created">{{planet.edited | date:'medium'}}</span>
+            <span *ngIf="species.created">{{species.edited | date:'medium'}}</span>
         </div>
     </section>
 </div>

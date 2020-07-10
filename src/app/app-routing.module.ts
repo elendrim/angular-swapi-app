@@ -19,10 +19,13 @@ import { PlanetTabsComponent } from './planet/planet-tabs/planet-tabs.component'
 import { PlanetSearchComponent } from './planet/planet-search/planet-search.component';
 import { PlanetDetailsComponent } from './planet/planet-details/planet-details.component';
 import { PlanetPropertyComponent } from './planet/planet-property/planet-property.component';
+import { SpeciesSearchComponent } from './species/species-search/species-search.component';
+import { SpeciesDetailsComponent } from './species/species-details/species-details.component';
+import { SpeciesPropertyComponent } from './species/species-property/species-property.component';
 
 
 const routes: Routes = [
-  //{ path: '', component: ProductListComponent },
+  
   { path: 'people/search', component: PeopleSearchComponent },
   { path: 'people/:peopleId', redirectTo: '/people/:peopleId/property', pathMatch: 'full' },
   { path: 'people/:peopleId', component: PeopleDetailsComponent,
@@ -121,6 +124,26 @@ const routes: Routes = [
       }
     ]
 
+  },
+
+
+  { path: 'species/search', component: SpeciesSearchComponent },
+  { path: 'species/:speciesId', redirectTo: '/species/:speciesId/property', pathMatch: 'full' },
+  { path: 'species/:speciesId', component: SpeciesDetailsComponent,
+    children: [
+      {
+        path: 'property', 
+        component: SpeciesPropertyComponent
+      },
+      {
+        path: 'people', 
+        component: PeopleTabsComponent
+      },
+      {
+        path: 'films',
+        component: FilmTabsComponent 
+      }
+    ]
   },
   
   { path: 'about', component: AboutComponent },
