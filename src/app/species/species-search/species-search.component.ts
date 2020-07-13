@@ -6,8 +6,13 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {SpeciesService, Species} from "../../species.service"
 import {HelperService} from "../../helper.service"
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-
+const displayedColumnsXSmall= ['name', 'classification'];
+const displayedColumnsSmall= ['name', 'classification', 'designation', 'average_height'];
+const displayedColumnsMedium= ['name', 'classification', 'designation', 'average_height', 'average_lifespan', 'language'];
+const displayedColumnsLarge= ['name', 'classification', 'designation', 'average_height', 'average_lifespan', 'language'];
+const displayedColumnsXLarge= ['id', 'name', 'classification', 'designation', 'average_height', 'average_lifespan', 'language'];
 
 @Component({
   selector: 'app-species-search',
@@ -17,7 +22,7 @@ import {HelperService} from "../../helper.service"
 export class SpeciesSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: SpeciesDataSource;
-  displayedColumns: string[] = ['name', 'classification', 'designation', 'average_height', 'average_lifespan', 'language'];
+  displayedColumns: string[] = displayedColumnsXLarge;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -29,7 +34,36 @@ export class SpeciesSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private speciesService: SpeciesService,
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) {
+
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+
+   }
 
   ngOnInit(): void {
     this.dataSource = new SpeciesDataSource(this.speciesService, this.helperService);

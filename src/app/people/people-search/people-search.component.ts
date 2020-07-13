@@ -6,6 +6,13 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {PeopleService, People} from "../../people.service"
 import {HelperService} from "../../helper.service"
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+const displayedColumnsXSmall= ["name", "birth_year"] ;
+const displayedColumnsSmall= ["name", "birth_year", "eye_color", "gender"] ;
+const displayedColumnsMedium= ["name", "birth_year", "eye_color", "gender", "hair_color", "height"] ;
+const displayedColumnsLarge= ["name", "birth_year", "eye_color", "gender", "hair_color", "height", "mass", "skin_color"] ;
+const displayedColumnsXLarge= ["id", "name", "birth_year", "eye_color", "gender", "hair_color", "height", "mass", "skin_color"] ;
 
 
 @Component({
@@ -16,7 +23,9 @@ import {HelperService} from "../../helper.service"
 export class PeopleSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: PeopleDataSource;
-  displayedColumns= ["id", "name", "birth_year", "eye_color", "gender", "hair_color", "height", "mass", "skin_color"] ;
+  displayedColumns=displayedColumnsLarge;
+
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -28,7 +37,34 @@ export class PeopleSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private peopleService: PeopleService,
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) {
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.dataSource = new PeopleDataSource(this.peopleService, this.helperService);

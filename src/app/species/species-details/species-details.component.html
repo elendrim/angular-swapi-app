@@ -2,8 +2,10 @@
 <div *ngIf="species" class="basic-container" >    
 
     <h2>
-        <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
-        <span>{{species.name}}</span>
+        <div class="top-container">
+            <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
+            <span>{{species.name}}</span>
+        </div>
     </h2>
         
     <nav mat-tab-nav-bar>

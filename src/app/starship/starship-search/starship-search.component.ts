@@ -7,7 +7,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import {FilmService, Film} from "../../film.service"
 import {HelperService} from "../../helper.service"
 import { StarshipService, Starship } from '../../starship.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+const displayedColumnsXSmall= [ "name", "manufacturer"] ;
+const displayedColumnsSmall= ["name", "manufacturer", "model", "starship_class"] ;
+const displayedColumnsMedium= ["name", "manufacturer", "model", "starship_class", "MGLT"] ;
+const displayedColumnsLarge= ["name", "manufacturer", "model", "starship_class", "MGLT"] ;
+const displayedColumnsXLarge= ["id", "name", "manufacturer", "model", "starship_class", "MGLT"] ;
 
 
 @Component({
@@ -18,7 +24,7 @@ import { StarshipService, Starship } from '../../starship.service';
 export class StarshipSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: StarshipDataSource;
-  displayedColumns= ["id", "name", "manufacturer", "model", "starship_class", "MGLT"] ;
+  displayedColumns= displayedColumnsXLarge;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -30,7 +36,36 @@ export class StarshipSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private starshipService: StarshipService,
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) {
+
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.dataSource = new StarshipDataSource(this.starshipService, this.helperService);

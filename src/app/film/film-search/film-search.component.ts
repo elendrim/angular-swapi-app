@@ -6,8 +6,16 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {FilmService, Film} from "../../film.service"
 import {HelperService} from "../../helper.service"
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
+
+
+const displayedColumnsXSmall= [ "title", "episode_id"] ;
+const displayedColumnsSmall= [ "title", "episode_id", "director", "producer"] ;
+const displayedColumnsMedium= [ "title", "episode_id", "director", "producer", "release_date"] ;
+const displayedColumnsLarge= ["title", "episode_id", "director", "producer", "release_date"] ;
+const displayedColumnsXLarge= ["id", "title", "episode_id", "director", "producer", "release_date"] ;
 
 @Component({
   selector: 'app-film-search',
@@ -17,7 +25,7 @@ import {HelperService} from "../../helper.service"
 export class FilmSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: FilmDataSource;
-  displayedColumns= ["id", "title", "episode_id", "director", "producer", "release_date"] ;
+  displayedColumns= displayedColumnsXLarge;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -29,7 +37,36 @@ export class FilmSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private filmService: FilmService,
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) { 
+
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.dataSource = new FilmDataSource(this.filmService, this.helperService);

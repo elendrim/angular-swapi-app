@@ -4,15 +4,14 @@
         <mat-spinner></mat-spinner>
     </div>
 
-    <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
+    <div class="top-container">
+        <span><mat-icon svgIcon="sw_species"  class="size-24 circle-icon top-icon background-species"></mat-icon></span>
 
-    <mat-form-field>
-        <input matInput placeholder="Search species" #inputSearch>
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-
-    <br />
-    <br />
+        <mat-form-field>
+            <input matInput placeholder="Search species" #inputSearch>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
 
     <mat-table class="species-table mat-elevation-z8" [dataSource]="dataSource">
 

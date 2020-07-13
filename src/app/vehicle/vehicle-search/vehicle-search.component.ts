@@ -6,6 +6,13 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {VehicleService, Vehicle} from "../../vehicle.service"
 import {HelperService} from "../../helper.service"
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+const displayedColumnsXSmall= [ "name", "manufacturer"] ;
+const displayedColumnsSmall= [ "name", "manufacturer", "model", "vehicle_class"] ;
+const displayedColumnsMedium= [ "name", "manufacturer", "model", "vehicle_class", "length"] ;
+const displayedColumnsLarge= ["name", "manufacturer", "model", "vehicle_class", "length"] ;
+const displayedColumnsXLarge= ["id", "name", "manufacturer", "model", "vehicle_class", "length"] ;
 
 
 @Component({
@@ -16,7 +23,7 @@ import {HelperService} from "../../helper.service"
 export class VehicleSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: VehicleDataSource;
-  displayedColumns= ["id", "name", "manufacturer", "model", "vehicle_class", "length"] ;
+  displayedColumns= displayedColumnsXLarge;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -28,7 +35,36 @@ export class VehicleSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private vehicleService: VehicleService, 
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) { 
+
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.dataSource = new VehicleDataSource(this.vehicleService, this.helperService);

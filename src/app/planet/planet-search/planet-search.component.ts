@@ -6,7 +6,13 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import {PlanetService, Planet} from "../../planet.service"
 import {HelperService} from "../../helper.service"
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+const displayedColumnsXSmall= ["name", "diameter"] 
+const displayedColumnsSmall= [ "name", "diameter", "rotation_period", "orbital_period"] 
+const displayedColumnsMedium= ["name", "diameter", "rotation_period", "orbital_period", "gravity", "population"] 
+const displayedColumnsLarge= ["name", "diameter", "rotation_period", "orbital_period", "gravity", "population", "climate"] 
+const displayedColumnsXLarge= ["id", "name", "diameter", "rotation_period", "orbital_period", "gravity", "population", "climate"] 
 
 @Component({
   selector: 'app-planet-search',
@@ -16,7 +22,7 @@ import {HelperService} from "../../helper.service"
 export class PlanetSearchComponent implements AfterViewInit, OnInit {
 
   dataSource: PlanetDataSource;
-  displayedColumns= ["id", "name", "diameter", "rotation_period", "orbital_period", "gravity", "population", "climate"] ;
+  displayedColumns= displayedColumnsLarge;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('inputSearch') input: ElementRef;
 
@@ -28,7 +34,36 @@ export class PlanetSearchComponent implements AfterViewInit, OnInit {
   constructor(
     private planetService: PlanetService,
     private helperService: HelperService,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+  ) { 
+
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.displayedColumns = displayedColumnsXSmall;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.displayedColumns = displayedColumnsSmall;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.displayedColumns = displayedColumnsMedium;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.displayedColumns = displayedColumnsLarge;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.displayedColumns = displayedColumnsXLarge;
+        }
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.dataSource = new PlanetDataSource(this.planetService, this.helperService);

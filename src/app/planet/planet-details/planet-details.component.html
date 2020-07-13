@@ -2,8 +2,10 @@
 <div *ngIf="planet" class="basic-container" >    
 
     <h2>
-        <span><mat-icon svgIcon="sw_planet"  class="size-24 circle-icon top-icon background-planet"></mat-icon></span>
-        <span>{{planet.name}}</span>
+        <div class="top-container">
+            <span><mat-icon svgIcon="sw_planet"  class="size-24 circle-icon top-icon background-planet"></mat-icon></span>
+            <span>{{planet.name}}</span>
+        </div>
     </h2>
         
     <nav mat-tab-nav-bar>

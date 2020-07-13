@@ -2,8 +2,10 @@
 <div *ngIf="film" class="basic-container" >    
 
     <h2>
-        <span><mat-icon svgIcon="sw_film"  class="size-24 circle-icon top-icon background-film"></mat-icon></span>
-        <span>{{film.title}}</span>
+        <div class="top-container">
+            <span><mat-icon svgIcon="sw_film"  class="size-24 circle-icon top-icon background-film"></mat-icon></span>
+            <span>{{film.title}}</span>
+        </div>
     </h2>
         
     <nav mat-tab-nav-bar>

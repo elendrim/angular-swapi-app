@@ -4,15 +4,14 @@
         <mat-spinner></mat-spinner>
     </div>
 
-    <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-people"></mat-icon></span>
+    <div class="top-container">
+        <span><mat-icon svgIcon="sw_people"  class="size-24 circle-icon top-icon background-people"></mat-icon></span>
 
-    <mat-form-field>
-        <input matInput placeholder="Search people" #inputSearch>
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-
-    <br />
-    <br />
+        <mat-form-field>
+            <input matInput placeholder="Search people" #inputSearch>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
 
     <mat-table class="people-table mat-elevation-z8" [dataSource]="dataSource">
 
@@ -22,7 +21,7 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
             <mat-cell class="name-cell"
                     *matCellDef="let people">            
                     <a mat-list-item [routerLink]="['/people/', people.id]" >{{people.name}}</a>

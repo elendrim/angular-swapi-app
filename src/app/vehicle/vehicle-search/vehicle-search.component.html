@@ -4,15 +4,14 @@
         <mat-spinner></mat-spinner>
     </div>
 
-    <span><mat-icon svgIcon="sw_vehicle"  class="size-24 circle-icon top-icon background-vehicle"></mat-icon></span>
+    <div class="top-container">
+        <span><mat-icon svgIcon="sw_vehicle"  class="size-24 circle-icon top-icon background-vehicle"></mat-icon></span>
 
-    <mat-form-field>
-        <input matInput placeholder="Search vehicle" #inputSearch>
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-
-    <br />
-    <br />
+        <mat-form-field>
+            <input matInput placeholder="Search vehicle" #inputSearch>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
 
     <mat-table class="vehicle-table mat-elevation-z8" [dataSource]="dataSource">
 

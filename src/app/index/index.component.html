@@ -1,7 +1,7 @@
 <div class="basic-container" >   
       
 
-    <mat-grid-list cols="3"  rowHeight="20:11" gutterSize="20px" >
+    <mat-grid-list #grid [cols]="cols" rowHeight="20:11" gutterSize="20px" >
 
         <mat-grid-tile class="background-people"> 
             <a [routerLink]="['/people/search']" class="tile-a">
