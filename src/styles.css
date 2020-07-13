@@ -164,6 +164,15 @@ table {
 }
 
 
+.color-white svg path{
+    fill: white ;
+}
+
+.color-white svg text{
+    fill: white ;
+}
+
+
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
     
