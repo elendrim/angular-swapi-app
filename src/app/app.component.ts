@@ -17,7 +17,7 @@ export class AppComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
   
   public disableClose : boolean = false;
-  public opened : boolean = true;
+  public opened : boolean = false;
   
   constructor(changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
@@ -30,18 +30,25 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     breakpointObserver.observe([
+      Breakpoints.XSmall,
       Breakpoints.Small,
-      Breakpoints.Medium
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge
     ]).subscribe(result => {
 
       if ( result.matches) {
-        if (result.breakpoints[Breakpoints.Small]) {
+        if (
+          result.breakpoints[Breakpoints.XSmall] || 
+          result.breakpoints[Breakpoints.Small] ||
+          result.breakpoints[Breakpoints.Medium] 
+          ) {
 
           this.disableClose = false;
           this.opened = false;
           
 
-        } else if (result.breakpoints[Breakpoints.Medium]) {
+        } else {
 
           this.disableClose = true;
           this.opened = true;
