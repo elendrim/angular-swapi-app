@@ -1,27 +1,58 @@
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {MediaMatcher, BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {ChangeDetectorRef, Component, OnDestroy, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
+import { MatSidenav } from '@angular/material/sidenav';
 
 
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html', 
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy {
+
   mobileQuery: MediaQueryList;
-
   private _mobileQueryListener: () => void;
-
+  
+  public disableClose : boolean = false;
+  public opened : boolean = true;
+  
   constructor(changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
     iconRegistry: MatIconRegistry, 
-    sanitizer: DomSanitizer) {
+    sanitizer: DomSanitizer,
+    breakpointObserver: BreakpointObserver,
+    ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    breakpointObserver.observe([
+      Breakpoints.Small,
+      Breakpoints.Medium
+    ]).subscribe(result => {
+
+      if ( result.matches) {
+        if (result.breakpoints[Breakpoints.Small]) {
+
+          this.disableClose = false;
+          this.opened = false;
+          
+
+        } else if (result.breakpoints[Breakpoints.Medium]) {
+
+          this.disableClose = true;
+          this.opened = true;
+
+        } 
+      }
+
+      
+    });
+  
+
 
     // vehicle
     iconRegistry.addSvgIcon(
@@ -83,12 +114,16 @@ export class AppComponent implements OnDestroy {
       'sw_death_star',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/radiusss/death_star_by_radiusss.svg')
     );
-    
-    
-
-    
 
   }
+
+  clickMenu() : void {
+    if ( ! this.disableClose ) {
+      this.opened = !this.opened;
+    }
+  }
+
+
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

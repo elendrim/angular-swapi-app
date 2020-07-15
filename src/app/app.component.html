@@ -2,9 +2,8 @@
 
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <!-- <h1 class="example-app-name"><a  class="color-white" ></a></h1> -->
-
+    <button mat-icon-button (click) = "clickMenu()"><mat-icon>menu</mat-icon></button>
+    
     <button mat-button [routerLink]="['/index']"><mat-icon svgIcon="sw_death_star" class="color-white" ></mat-icon>&nbsp;&nbsp;Angular Swapi App</button>
 
   </mat-toolbar>
@@ -12,35 +11,37 @@
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav  [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                 [fixedInViewport]="mobileQuery.matches" 
+                 [disableClose]="disableClose" 
+                 [opened]="opened"
+                 fixedTopGap="56">
       <mat-nav-list>
-        <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-        <a mat-list-item [routerLink]="['/people/search']" >
+        
+        <a mat-list-item [routerLink]="['/people/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_people"  class="circle-icon top-icon background-people"></mat-icon></span>
           People
         </a>
-        <a mat-list-item [routerLink]="['/film/search']" >
+        <a mat-list-item [routerLink]="['/film/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_film"  class="circle-icon top-icon background-film"></mat-icon></span>
           Film
         </a>
-        <a mat-list-item [routerLink]="['/starship/search']" >
+        <a mat-list-item [routerLink]="['/starship/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_starship"  class="circle-icon top-icon background-starship"></mat-icon></span>
           Starship
         </a>
-        <a mat-list-item [routerLink]="['/planet/search']" >
+        <a mat-list-item [routerLink]="['/planet/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_planet"  class="circle-icon top-icon background-planet"></mat-icon></span>
           Planet
         </a>
-        <a mat-list-item [routerLink]="['/species/search']" >
+        <a mat-list-item [routerLink]="['/species/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_species"  class="circle-icon top-icon background-species"></mat-icon></span>
           Species
         </a>
-        <a mat-list-item [routerLink]="['/vehicle/search']" >
+        <a mat-list-item [routerLink]="['/vehicle/search']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_vehicle"  class="circle-icon top-icon background-vehicle"></mat-icon></span>
           Vehicle
         </a>
-        <a mat-list-item [routerLink]="['/about']" >
+        <a mat-list-item [routerLink]="['/about']" (click) = "clickMenu()">
           <span><mat-icon svgIcon="sw_miscellaneous"  class="circle-icon top-icon"></mat-icon></span>
           About
         </a>
