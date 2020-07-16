@@ -45,11 +45,11 @@ export class SpeciesTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from people
-      let filmId = params.get('peopleId');
-      if ( filmId ) {
-        this.peopleService.getPeople(filmId).subscribe(data => {
+      let peopleId = params.get('peopleId');
+      if ( peopleId ) {
+        this.peopleService.getPeople(peopleId).subscribe(data => {
           this.people = data;
-          this.people.id = filmId;
+          this.people.id = peopleId;
 
           // characters
           let species = new Array<Species>();

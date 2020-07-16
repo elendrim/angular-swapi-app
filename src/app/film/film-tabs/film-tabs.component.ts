@@ -74,11 +74,11 @@ export class FilmTabsComponent implements OnInit {
       }
 
       // from people
-      let planetId = params.get('peopleId');
-      if ( planetId ) {
-        this.peopleService.getPeople(planetId).subscribe(data => {
+      let peopleId = params.get('peopleId');
+      if ( peopleId ) {
+        this.peopleService.getPeople(peopleId).subscribe(data => {
           this.people = data;
-          this.people.id = planetId;
+          this.people.id = peopleId;
 
           // films
           let films = new Array<Film>();
