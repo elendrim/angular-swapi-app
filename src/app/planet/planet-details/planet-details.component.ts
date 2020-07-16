@@ -43,7 +43,7 @@ export class PlanetDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('planetId');
+      let id = params.get('planetId');
 
       this.planetService.getPlanet(id).subscribe(data => {
         this.planet = data;

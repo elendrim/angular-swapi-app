@@ -45,21 +45,21 @@ export class VehicleTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
 
       // from people 
-      var filmId = params.get('peopleId');
-      if ( filmId ) {
+      let peopleId = params.get('peopleId');
+      if ( peopleId ) {
 
-        this.peopleService.getPeople(filmId).subscribe(data => {
+        this.peopleService.getPeople(peopleId).subscribe(data => {
           this.people = data;
-          this.people.id = filmId;
+          this.people.id = peopleId;
 
           // vehicles
-          var vehicles = new Array<Vehicle>();
+          let vehicles = new Array<Vehicle>();
           this.people.vehicles.forEach( element=> {
-            var obs = this.vehicleService.getVehicleFromURL(element);
+            let obs = this.vehicleService.getVehicleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               vehicles.push(data);
@@ -71,7 +71,7 @@ export class VehicleTabsComponent implements OnInit {
       }
 
       // from film
-      var filmId = params.get('filmId');
+      let filmId = params.get('filmId');
       if ( filmId ) {
 
         this.filmService.getFilm(filmId).subscribe(data => {
@@ -79,13 +79,13 @@ export class VehicleTabsComponent implements OnInit {
           this.film.id = filmId;
 
           // vehicles
-          var vehicles = new Array<Vehicle>();
+          let vehicles = new Array<Vehicle>();
           this.film.vehicles.forEach( element=> {
-            var obs = this.vehicleService.getVehicleFromURL(element);
+            let obs = this.vehicleService.getVehicleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               vehicles.push(data);

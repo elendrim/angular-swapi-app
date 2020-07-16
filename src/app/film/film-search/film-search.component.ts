@@ -153,7 +153,7 @@ export class FilmDataSource implements DataSource<Film> {
     .subscribe(filmTab => {
 
       filmTab.forEach(film => {
-        var id = this.helperService.getIdFromUrl(film.url);
+        let id = this.helperService.getIdFromUrl(film.url);
         film.id = id;  
       });
       

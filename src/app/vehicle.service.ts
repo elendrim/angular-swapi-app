@@ -55,7 +55,7 @@ export class VehicleService {
     pageNumber = 0,
     pageSize = 3) :  Observable<Vehicle[]> {
 
-    var page = pageNumber +1;
+    let page = pageNumber +1;
 
     return this.http.get(url, {
         params: new HttpParams()

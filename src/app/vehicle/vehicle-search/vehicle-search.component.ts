@@ -151,7 +151,7 @@ export class VehicleDataSource implements DataSource<Vehicle> {
     .subscribe(vehicleTab => {
 
       vehicleTab.forEach(vehicle => {
-        var id = this.helperService.getIdFromUrl(vehicle.url);
+        let id = this.helperService.getIdFromUrl(vehicle.url);
         vehicle.id = id;  
       });
       

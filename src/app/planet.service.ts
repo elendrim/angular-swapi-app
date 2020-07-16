@@ -50,7 +50,7 @@ export class PlanetService {
     pageNumber = 0,
     pageSize = 3) :  Observable<Planet[]> {
 
-    var page = pageNumber +1;
+    let page = pageNumber +1;
 
     return this.http.get(this.url, {
         params: new HttpParams()

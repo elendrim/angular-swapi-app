@@ -45,20 +45,20 @@ export class PlanetTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from film
-      var filmId = params.get('filmId');
+      let filmId = params.get('filmId');
       if ( filmId ) {
         this.filmService.getFilm(filmId).subscribe(data => {
           this.film = data;
           this.film.id = filmId;
 
           // characters
-          var planets = new Array<Planet>();
+          let planets = new Array<Planet>();
           this.film.planets.forEach( element=> {
-            var obs = this.planetService.getPlanetFromURL(element);
+            let obs = this.planetService.getPlanetFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               planets.push(data);

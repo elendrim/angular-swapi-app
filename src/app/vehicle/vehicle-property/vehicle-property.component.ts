@@ -39,7 +39,7 @@ export class VehiclePropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      var id = params.get('vehicleId');
+      let id = params.get('vehicleId');
       this.vehicleService.getVehicle(id).subscribe(data => {
         this.vehicle = data;
         this.vehicle.id = id;

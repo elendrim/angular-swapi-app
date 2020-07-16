@@ -44,7 +44,7 @@ export class PeopleDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('peopleId');
+      let id = params.get('peopleId');
 
       this.peopleService.getPeople(id).subscribe(data => {
         this.people = data;

@@ -46,7 +46,7 @@ export class FilmDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('filmId');
+      let id = params.get('filmId');
 
       this.filmService.getFilm(id).subscribe(data => {
         this.film = data;

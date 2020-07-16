@@ -42,7 +42,7 @@ export class SpeciesDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('speciesId');
+      let id = params.get('speciesId');
 
       this.speciesService.getSpecies(id).subscribe(data => {
         this.species = data;

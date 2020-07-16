@@ -17,13 +17,13 @@ export class HelperService {
 
   getIdFromUrl(url: string) : string  {
 
-    var id = regexIdUrl.exec(url)[0];
+    let id = regexIdUrl.exec(url)[0];
     return id;
 
-    // var id = url.substring(url.lastIndexOf('/') + 1);
+    // let id = url.substring(url.lastIndexOf('/') + 1);
     // if( !id ) {
     //   // remove last caracter
-    //   var subsUrl = url.substring(0, url.length -1 );
+    //   let subsUrl = url.substring(0, url.length -1 );
     //   id = subsUrl.substring(subsUrl.lastIndexOf('/') + 1);
     // }
     // return id;
@@ -31,13 +31,13 @@ export class HelperService {
 
   getBadgeNumber(i : number ) : string {
     if ( i >= 1000 ) {
-      var result = Math.floor(i / 1000) ;
+      let result = Math.floor(i / 1000) ;
       return result + "k+";
     } else if ( i > 100 ) {
-      var result = Math.floor(i / 100) * 100;
+      let result = Math.floor(i / 100) * 100;
       return result + "+";
     } else  if ( i > 10 ) {
-      var result = Math.floor(i / 10) * 10;
+      let result = Math.floor(i / 10) * 10;
       return result + "+";
     }
 

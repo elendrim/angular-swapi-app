@@ -152,7 +152,7 @@ export class StarshipDataSource implements DataSource<Starship> {
     .subscribe(starshipTab => {
 
       starshipTab.forEach(starship => {
-        var id = this.helperService.getIdFromUrl(starship.url);
+        let id = this.helperService.getIdFromUrl(starship.url);
         starship.id = id;  
       });
       

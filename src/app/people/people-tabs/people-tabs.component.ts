@@ -48,7 +48,7 @@ export class PeopleTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from starships
-      var starshipId = params.get('starshipId');
+      let starshipId = params.get('starshipId');
       if ( starshipId ) {
 
         this.starshipService.getStarship(starshipId).subscribe(data => {
@@ -56,13 +56,13 @@ export class PeopleTabsComponent implements OnInit {
           this.starship.id = starshipId;
 
           // characters
-          var people = new Array<People>();
+          let people = new Array<People>();
           this.starship.pilots.forEach( element=> {
-            var obs = this.peopleService.getPeopleFromURL(element);
+            let obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               people.push(data);
@@ -75,7 +75,7 @@ export class PeopleTabsComponent implements OnInit {
       }
 
       // from film
-      var filmId = params.get('filmId');
+      let filmId = params.get('filmId');
       if ( filmId ) {
 
         this.filmService.getFilm(filmId).subscribe(data => {
@@ -83,13 +83,13 @@ export class PeopleTabsComponent implements OnInit {
           this.film.id = filmId;
 
           // characters
-          var people = new Array<People>();
+          let people = new Array<People>();
           this.film.characters.forEach( element=> {
-            var obs = this.peopleService.getPeopleFromURL(element);
+            let obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               people.push(data);
@@ -102,7 +102,7 @@ export class PeopleTabsComponent implements OnInit {
       }
 
       // from planet
-      var planetId = params.get('planetId');
+      let planetId = params.get('planetId');
       if ( planetId ) {
 
         this.planetService.getPlanet(planetId).subscribe(data => {
@@ -110,13 +110,13 @@ export class PeopleTabsComponent implements OnInit {
           this.planet.id = planetId;
 
           // characters
-          var people = new Array<People>();
+          let people = new Array<People>();
           this.planet.residents.forEach( element=> {
-            var obs = this.peopleService.getPeopleFromURL(element);
+            let obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               people.push(data);
@@ -130,7 +130,7 @@ export class PeopleTabsComponent implements OnInit {
 
 
       // from species
-      var speciesId = params.get('speciesId');
+      let speciesId = params.get('speciesId');
       if ( speciesId ) {
 
         this.speciesService.getSpecies(speciesId).subscribe(data => {
@@ -138,13 +138,13 @@ export class PeopleTabsComponent implements OnInit {
           this.species.id = speciesId;
 
           // characters
-          var people = new Array<People>();
+          let people = new Array<People>();
           this.species.people.forEach( element=> {
-            var obs = this.peopleService.getPeopleFromURL(element);
+            let obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               people.push(data);
@@ -158,7 +158,7 @@ export class PeopleTabsComponent implements OnInit {
 
 
       // from vehicle
-      var vehicleId = params.get('vehicleId');
+      let vehicleId = params.get('vehicleId');
       if ( vehicleId ) {
 
         this.vehicleService.getVehicle(vehicleId).subscribe(data => {
@@ -166,13 +166,13 @@ export class PeopleTabsComponent implements OnInit {
           this.vehicle.id = vehicleId;
 
           // characters
-          var people = new Array<People>();
+          let people = new Array<People>();
           this.vehicle.pilots.forEach( element=> {
-            var obs = this.peopleService.getPeopleFromURL(element);
+            let obs = this.peopleService.getPeopleFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               people.push(data);

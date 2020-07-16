@@ -150,7 +150,7 @@ export class PlanetDataSource implements DataSource<Planet> {
     .subscribe(planetTab => {
 
       planetTab.forEach(planet => {
-        var id = this.helperService.getIdFromUrl(planet.url);
+        let id = this.helperService.getIdFromUrl(planet.url);
         planet.id = id;  
       });
       

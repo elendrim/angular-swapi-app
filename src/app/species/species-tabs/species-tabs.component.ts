@@ -45,20 +45,20 @@ export class SpeciesTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from people
-      var filmId = params.get('peopleId');
+      let filmId = params.get('peopleId');
       if ( filmId ) {
         this.peopleService.getPeople(filmId).subscribe(data => {
           this.people = data;
           this.people.id = filmId;
 
           // characters
-          var species = new Array<Species>();
+          let species = new Array<Species>();
           this.people.species.forEach( element=> {
-            var obs = this.speciesService.getSpeciesFromURL(element);
+            let obs = this.speciesService.getSpeciesFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               species.push(data);
@@ -71,20 +71,20 @@ export class SpeciesTabsComponent implements OnInit {
       }
 
       // from film
-      var filmId = params.get('filmId');
+      let filmId = params.get('filmId');
       if ( filmId ) {
         this.filmService.getFilm(filmId).subscribe(data => {
           this.film = data;
           this.film.id = filmId;
 
           // characters
-          var species = new Array<Species>();
+          let species = new Array<Species>();
           this.film.species.forEach( element=> {
-            var obs = this.speciesService.getSpeciesFromURL(element);
+            let obs = this.speciesService.getSpeciesFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               species.push(data);

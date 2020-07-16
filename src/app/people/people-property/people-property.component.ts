@@ -40,17 +40,17 @@ export class PeoplePropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      var id = params.get('peopleId');
+      let id = params.get('peopleId');
       
       this.peopleService.getPeople(id).subscribe(data => {
         this.people = data;
         this.people.id = id;
 
         // homeworld
-        var obs = this.planetService.getPlanetFromURL(this.people.homeworld);
+        let obs = this.planetService.getPlanetFromURL(this.people.homeworld);
         obs.subscribe(planet => {
 
-          var planetId = this.helperService.getIdFromUrl(this.people.homeworld);
+          let planetId = this.helperService.getIdFromUrl(this.people.homeworld);
           
           this.homeworld = planet; 
           this.homeworld.id = planetId;

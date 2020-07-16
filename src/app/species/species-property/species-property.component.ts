@@ -40,17 +40,17 @@ export class SpeciesPropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      var id = params.get('speciesId');
+      let id = params.get('speciesId');
       
       this.speciesService.getSpecies(id).subscribe(data => {
         this.species = data;
         this.species.id = id;
 
         // homeworld
-        var obs = this.planetService.getPlanetFromURL(this.species.homeworld);
+        let obs = this.planetService.getPlanetFromURL(this.species.homeworld);
         obs.subscribe(planet => {
 
-          var planetId = this.helperService.getIdFromUrl(this.species.homeworld);
+          let planetId = this.helperService.getIdFromUrl(this.species.homeworld);
           
           this.homeworld = planet; 
           this.homeworld.id = planetId;

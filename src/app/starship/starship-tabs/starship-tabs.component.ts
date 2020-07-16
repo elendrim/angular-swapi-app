@@ -45,20 +45,20 @@ export class StarshipTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
       
       // from people
-      var filmId = params.get('peopleId');
+      let filmId = params.get('peopleId');
       if ( filmId ) {
         this.peopleService.getPeople(filmId).subscribe(data => {
           this.people = data;
           this.people.id = filmId;
 
           // starships
-          var starships = new Array<Starship>();
+          let starships = new Array<Starship>();
           this.people.starships.forEach( element=> {
-            var obs = this.starshipService.getStarshipFromURL(element);
+            let obs = this.starshipService.getStarshipFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               starships.push(data);
@@ -71,20 +71,20 @@ export class StarshipTabsComponent implements OnInit {
       }
 
       // from people
-      var filmId = params.get('filmId');
+      let filmId = params.get('filmId');
       if ( filmId ) {
         this.filmService.getFilm(filmId).subscribe(data => {
           this.film = data;
           this.film.id = filmId;
 
           // starships
-          var starships = new Array<Starship>();
+          let starships = new Array<Starship>();
           this.film.starships.forEach( element=> {
-            var obs = this.starshipService.getStarshipFromURL(element);
+            let obs = this.starshipService.getStarshipFromURL(element);
 
             obs.subscribe(data => {
 
-              var id = this.helperService.getIdFromUrl(element);
+              let id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               starships.push(data);

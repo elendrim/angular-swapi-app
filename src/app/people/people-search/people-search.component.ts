@@ -151,7 +151,7 @@ export class PeopleDataSource implements DataSource<People> {
     .subscribe(peopleTab => {
 
       peopleTab.forEach(people => {
-        var id = this.helperService.getIdFromUrl(people.url);
+        let id = this.helperService.getIdFromUrl(people.url);
         people.id = id;  
       });
       

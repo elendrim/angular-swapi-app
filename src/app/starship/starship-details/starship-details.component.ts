@@ -42,7 +42,7 @@ export class StarshipDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      var id = params.get('starshipId');
+      let id = params.get('starshipId');
 
       this.starshipService.getStarship(id).subscribe(data => {
         this.starship = data;

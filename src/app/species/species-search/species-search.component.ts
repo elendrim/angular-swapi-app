@@ -150,7 +150,7 @@ export class SpeciesDataSource implements DataSource<Species> {
     .subscribe(speciesTab => {
 
       speciesTab.forEach(species => {
-        var id = this.helperService.getIdFromUrl(species.url);
+        let id = this.helperService.getIdFromUrl(species.url);
         species.id = id;  
       });
       
