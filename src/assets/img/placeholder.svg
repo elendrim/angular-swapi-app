@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Image unavailable">
+  <defs>
+    <radialGradient id="space" cx="50%" cy="36%" r="78%">
+      <stop offset="0%" stop-color="#1b2138"/>
+      <stop offset="100%" stop-color="#05060c"/>
+    </radialGradient>
+    <radialGradient id="ds" cx="36%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#cfd4de"/>
+      <stop offset="58%" stop-color="#878d99"/>
+      <stop offset="100%" stop-color="#42474f"/>
+    </radialGradient>
+    <radialGradient id="dish" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2f333c"/>
+      <stop offset="100%" stop-color="#5b616d"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#space)"/>
+
+  <!-- stars -->
+  <g fill="#ffffff">
+    <circle cx="28" cy="40" r="1.4" opacity=".8"/>
+    <circle cx="70" cy="88" r="1" opacity=".5"/>
+    <circle cx="120" cy="30" r="1.2" opacity=".7"/>
+    <circle cx="180" cy="60" r="1" opacity=".45"/>
+    <circle cx="250" cy="34" r="1.5" opacity=".85"/>
+    <circle cx="320" cy="70" r="1.1" opacity=".6"/>
+    <circle cx="365" cy="40" r="1.3" opacity=".75"/>
+    <circle cx="356" cy="140" r="1" opacity=".5"/>
+    <circle cx="40" cy="150" r="1.2" opacity=".65"/>
+    <circle cx="24" cy="240" r="1.4" opacity=".8"/>
+    <circle cx="60" cy="300" r="1" opacity=".5"/>
+    <circle cx="110" cy="340" r="1.3" opacity=".7"/>
+    <circle cx="300" cy="300" r="1.1" opacity=".6"/>
+    <circle cx="356" cy="250" r="1.4" opacity=".8"/>
+    <circle cx="380" cy="330" r="1" opacity=".5"/>
+    <circle cx="340" cy="360" r="1.2" opacity=".65"/>
+    <circle cx="200" cy="20" r="1" opacity=".5"/>
+    <circle cx="290" cy="120" r="1" opacity=".45"/>
+  </g>
+
+  <!-- Death Star -->
+  <g transform="translate(200,158)">
+    <circle r="92" fill="url(#ds)"/>
+    <!-- superlaser dish -->
+    <circle cx="-36" cy="-34" r="23" fill="url(#dish)"/>
+    <circle cx="-36" cy="-34" r="23" fill="none" stroke="#2a2e36" stroke-width="1.5"/>
+    <circle cx="-36" cy="-34" r="11" fill="#33373f"/>
+    <!-- equatorial trench -->
+    <path d="M-91 2 h182" stroke="#33373f" stroke-width="4"/>
+    <path d="M-91 -2 h182" stroke="#9aa0ac" stroke-width="1" opacity=".5"/>
+    <!-- surface panel lines -->
+    <g stroke="#666d7b" stroke-width="1" opacity=".5" fill="none">
+      <path d="M-88 24 h176"/>
+      <path d="M-78 44 h156"/>
+      <path d="M-58 64 h116"/>
+      <path d="M10 -70 h55"/>
+      <path d="M20 -50 h58"/>
+    </g>
+    <!-- rim -->
+    <circle r="92" fill="none" stroke="#22262e" stroke-width="2"/>
+  </g>
+
+  <!-- text -->
+  <text x="200" y="308" text-anchor="middle" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="3" fill="#FFE81F">IMAGE UNAVAILABLE</text>
+  <text x="200" y="338" text-anchor="middle" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-style="italic" letter-spacing="0.5" fill="#8b93b8">These aren&apos;t the images you&apos;re looking for</text>
+</svg>

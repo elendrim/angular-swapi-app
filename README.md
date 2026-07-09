@@ -125,7 +125,7 @@ npx firebase deploy --only hosting
 
 - **Author:** Grégory OLIVER
 - **Data:** [SWAPI — The Star Wars API](https://swapi.dev/)
-- **Images:** [starwars-visualguide.com](https://starwars-visualguide.com) & Wookieepedia
+- **Images:** Character images from [Wookieepedia](https://starwars.fandom.com/) (via the [akabab/starwars-api](https://akabab.github.io/starwars-api/) dataset), bundled locally under `src/assets/img/`; a local placeholder is shown where no image is available.
 - **Icons:** [Starwars Icon Set](https://dribbble.com/shots/3907212-Starwars-Icon-Set) by Sherzod Mirzaakhmedov
 
 > Star Wars and all associated names and images are copyright Lucasfilm Ltd.

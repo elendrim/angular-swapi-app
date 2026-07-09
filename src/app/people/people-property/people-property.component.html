@@ -3,8 +3,8 @@
     <img
       class="details-img"
       alt="{{ people.name }}"
-      src="https://starwars-visualguide.com/assets/img/characters/{{ people.id }}.jpg"
-      onerror="this.style.display = 'none'"
+      src="assets/img/characters/{{ people.id }}.jpg"
+      onerror="this.onerror=null; this.src='assets/img/placeholder.svg'"
     />
 
     <section>
