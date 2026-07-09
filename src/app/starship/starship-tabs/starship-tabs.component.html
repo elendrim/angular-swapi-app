@@ -5,7 +5,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> <a mat-list-item [routerLink]="['/starship/', element.id]" >{{element.name}}</a> </td>
+          <td mat-cell *matCellDef="let element"> <a matButton="tonal" [routerLink]="['/starship/', element.id]" >{{element.name}}</a> </td>
         </ng-container>
       
         <!-- Model Column -->

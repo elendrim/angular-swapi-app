@@ -11,7 +11,7 @@
             <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
             <mat-cell class="name-cell"
                     *matCellDef="let people">            
-                    <a mat-list-item [routerLink]="['/people/', people.id]" >{{people.name}}</a>
+                    <a matButton="tonal" [routerLink]="['/people/', people.id]" >{{people.name}}</a>
             </mat-cell>
 
         </ng-container>

@@ -25,7 +25,7 @@
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
       <mat-cell class="name-cell" *matCellDef="let film">
-        <a mat-list-item [routerLink]="['/film/', film.id]">{{ film.title }}</a>
+        <a matButton="tonal" [routerLink]="['/film/', film.id]">{{ film.title }}</a>
       </mat-cell>
     </ng-container>
 
