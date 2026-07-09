@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
+    "audit": "npm audit --audit-level=high --registry=https://registry.npmjs.org",
     "deploy": "ng build && firebase deploy --only hosting --project prod"
   },
   "private": true,

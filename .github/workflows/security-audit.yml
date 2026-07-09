@@ -1,0 +1,32 @@
+name: Security audit
+
+# Verifies the security of the project's dependencies (npm advisories).
+# Runs on pushes, pull requests, and weekly. Uses the public npm registry
+# advisory database; only the lockfile is needed (no install), which also
+# avoids the private registry the local lockfile resolves against.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # every Monday at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Informational: report every advisory (never fails the build).
+      - name: Report all advisories
+        run: npm audit --registry=https://registry.npmjs.org || true
+
+      # Gate: fail the build on high or critical severity advisories.
+      - name: Fail on high/critical vulnerabilities
+        run: npm audit --audit-level=high --registry=https://registry.npmjs.org

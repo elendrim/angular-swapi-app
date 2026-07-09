@@ -48,6 +48,7 @@ Then open **http://localhost:4200/**. The app reloads automatically on source ch
 | `npm run watch`  | Development build in watch mode |
 | `npm test`       | Unit tests via Vitest |
 | `npm run lint`   | Static analysis via ESLint (angular-eslint) |
+| `npm run audit`  | Dependency security audit (fails on high/critical) |
 | `npm run deploy` | Production build + deploy to Firebase Hosting |
 
 ## Running the tests
@@ -62,6 +63,25 @@ for every component, that it can be created, plus visibility checks on the key U
 - **`*-search`** pages render a populated table row with the most significant
   value (the *name*, or the *title* for films).
 - **`*-details`** pages render that same name/title in the page heading.
+
+## Security
+
+Dependency vulnerabilities are checked against the npm advisory database:
+
+```bash
+npm run audit          # fails on high/critical advisories
+```
+
+> The audit targets the public npm registry explicitly (`--registry`), because the
+> project's lockfile resolves against a private registry whose advisory endpoint is
+> not available. Only the lockfile is needed — no install.
+
+Two automated layers run on GitHub (see `.github/`):
+
+- **`security-audit.yml`** — a GitHub Actions workflow runs `npm audit` on every push,
+  pull request, and weekly; it fails only on **high/critical** severity.
+- **`dependabot.yml`** — Dependabot opens weekly PRs for outdated/vulnerable npm
+  packages and GitHub Actions.
 
 ## Architecture
 
