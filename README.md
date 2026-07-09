@@ -48,6 +48,7 @@ Then open **http://localhost:4200/**. The app reloads automatically on source ch
 | `npm run watch`  | Development build in watch mode |
 | `npm test`       | Unit tests via Vitest |
 | `npm run lint`   | Static analysis via ESLint (angular-eslint) |
+| `npm run deploy` | Production build + deploy to Firebase Hosting |
 
 ## Running the tests
 
@@ -110,15 +111,13 @@ related resources. For example, `/film/:filmId` has children `property`,
 
 ## Deployment
 
-The app is configured for Firebase Hosting (see `firebase.json` / `.firebaserc`).
-The hosting `public` directory is `dist/angular-swapi-app/browser` (the esbuild
-output). Deploy with the Firebase CLI:
+Deployed to **Firebase Hosting** via the `firebase-tools` CLI (a devDependency).
+Config lives in `firebase.json` (serves `dist/angular-swapi-app/browser`, SPA rewrite)
+and `.firebaserc` (the `prod` alias → the `angular-swapi-app` project).
 
 ```bash
-npm run build
-npx firebase login          # first time only (interactive)
-npx firebase use <project>  # set the target Firebase project
-npx firebase deploy --only hosting
+npx firebase login   # one-time authentication
+npm run deploy       # = ng build + firebase deploy --only hosting --project prod
 ```
 
 ## Credits

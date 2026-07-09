@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "ng build && firebase deploy --only hosting --project prod"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +32,7 @@
     "angular-eslint": "22.0.0",
     "eslint": "^10.3.0",
     "eslint-plugin-unused-imports": "^4.4.1",
+    "firebase-tools": "^15.22.4",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
