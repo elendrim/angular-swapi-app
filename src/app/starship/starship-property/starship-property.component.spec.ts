@@ -1,4 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { of } from 'rxjs';
+import { AngularMaterialModule } from '../../angular-material.module';
 
 import { StarshipPropertyComponent } from './starship-property.component';
 
@@ -8,7 +14,16 @@ describe('StarshipPropertyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StarshipPropertyComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        NoopAnimationsModule,
+        AngularMaterialModule
+      ],
+      declarations: [ StarshipPropertyComponent ],
+      providers: [
+        { provide: ActivatedRoute, useValue: { parent: { paramMap: of(convertToParamMap({})) } } }
+      ]
     })
     .compileComponents();
   }));
