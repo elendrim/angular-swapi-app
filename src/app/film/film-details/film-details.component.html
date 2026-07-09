@@ -1,5 +1,6 @@
 
-<div *ngIf="film" class="basic-container" >    
+@if (film(); as film) {
+<div class="basic-container" >    
 
     <h2>
         <div class="top-container">
@@ -8,7 +9,7 @@
         </div>
     </h2>
         
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
 
         <!-- properties -->
         <a mat-tab-link
@@ -66,5 +67,6 @@
         
     </nav>
 
-    <router-outlet></router-outlet>
+    <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
 </div>
+}

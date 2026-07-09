@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "angular-swapi-app",
-      "public": "dist/angular-swapi-app",
+      "public": "dist/angular-swapi-app/browser",
       "ignore": [
         "firebase.json",
         "**/.*",

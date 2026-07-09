@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {SpeciesService, Species} from "../../species.service"
@@ -15,6 +15,7 @@ const displayedColumnsLarge= ['name', 'classification', 'designation', 'average_
 const displayedColumnsXLarge= ['id', 'name', 'classification', 'designation', 'average_height', 'average_lifespan', 'language'];
 
 @Component({
+  standalone: false,
   selector: 'app-species-search',
   templateUrl: './species-search.component.html',
   styleUrls: ['./species-search.component.css']
@@ -150,7 +151,7 @@ export class SpeciesDataSource implements DataSource<Species> {
     .subscribe(speciesTab => {
 
       speciesTab.forEach(species => {
-        let id = this.helperService.getIdFromUrl(species.url);
+        const id = this.helperService.getIdFromUrl(species.url);
         species.id = id;  
       });
       

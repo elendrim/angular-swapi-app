@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {PeopleService, People} from "../../people.service"
@@ -16,6 +16,7 @@ const displayedColumnsXLarge= ["id", "name", "birth_year", "eye_color", "gender"
 
 
 @Component({
+  standalone: false,
   selector: 'app-people-search',
   templateUrl: './people-search.component.html',
   styleUrls: ['./people-search.component.css']
@@ -151,7 +152,7 @@ export class PeopleDataSource implements DataSource<People> {
     .subscribe(peopleTab => {
 
       peopleTab.forEach(people => {
-        let id = this.helperService.getIdFromUrl(people.url);
+        const id = this.helperService.getIdFromUrl(people.url);
         people.id = id;  
       });
       

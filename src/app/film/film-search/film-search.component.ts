@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {FilmService, Film} from "../../film.service"
@@ -18,6 +18,7 @@ const displayedColumnsLarge= ["title", "episode_id", "director", "producer", "re
 const displayedColumnsXLarge= ["id", "title", "episode_id", "director", "producer", "release_date"] ;
 
 @Component({
+  standalone: false,
   selector: 'app-film-search',
   templateUrl: './film-search.component.html',
   styleUrls: ['./film-search.component.css']
@@ -153,7 +154,7 @@ export class FilmDataSource implements DataSource<Film> {
     .subscribe(filmTab => {
 
       filmTab.forEach(film => {
-        let id = this.helperService.getIdFromUrl(film.url);
+        const id = this.helperService.getIdFromUrl(film.url);
         film.id = id;  
       });
       

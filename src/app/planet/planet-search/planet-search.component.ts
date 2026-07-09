@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {PlanetService, Planet} from "../../planet.service"
@@ -15,6 +15,7 @@ const displayedColumnsLarge= ["name", "diameter", "rotation_period", "orbital_pe
 const displayedColumnsXLarge= ["id", "name", "diameter", "rotation_period", "orbital_period", "gravity", "population", "climate"] 
 
 @Component({
+  standalone: false,
   selector: 'app-planet-search',
   templateUrl: './planet-search.component.html',
   styleUrls: ['./planet-search.component.css']
@@ -150,7 +151,7 @@ export class PlanetDataSource implements DataSource<Planet> {
     .subscribe(planetTab => {
 
       planetTab.forEach(planet => {
-        let id = this.helperService.getIdFromUrl(planet.url);
+        const id = this.helperService.getIdFromUrl(planet.url);
         planet.id = id;  
       });
       

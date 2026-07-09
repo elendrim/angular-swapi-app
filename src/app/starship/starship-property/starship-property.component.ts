@@ -1,27 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
-import { PeopleService, People } from '../../people.service';
-import { VehicleService, Vehicle } from '../../vehicle.service';
+import { PeopleService } from '../../people.service';
+import { VehicleService } from '../../vehicle.service';
 import { StarshipService, Starship } from '../../starship.service';
-import { SpeciesService, Species } from '../../species.service';
-import { FilmService, Film } from '../../film.service';
-import { PlanetService, Planet } from '../../planet.service';
+import { SpeciesService } from '../../species.service';
+import { FilmService } from '../../film.service';
+import { PlanetService } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-starship-property',
   templateUrl: './starship-property.component.html',
   styleUrls: ['./starship-property.component.css']
 })
 export class StarshipPropertyComponent implements OnInit {
-
-  starship : Starship;
+  starship = signal<Starship | undefined>(undefined);
   
 
   constructor(
@@ -39,10 +36,10 @@ export class StarshipPropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      let id = params.get('starshipId');
+      const id = params.get('starshipId');
       this.starshipService.getStarship(id).subscribe(data => {
-        this.starship = data;
-        this.starship.id = id;
+        data.id = id;
+        this.starship.set(data);
       });
     });
   }

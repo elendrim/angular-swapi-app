@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, map } from 'rxjs/operators'
-import { Starship } from './starship.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 
 
@@ -26,7 +25,7 @@ export interface Vehicle {
   url: string;
 }
 
-const url : string = "https://swapi.dev/api/vehicles/";
+const url  = "https://swapi.dev/api/vehicles/";
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +54,7 @@ export class VehicleService {
     pageNumber = 0,
     pageSize = 3) :  Observable<Vehicle[]> {
 
-    let page = pageNumber +1;
+    const page = pageNumber +1;
 
     return this.http.get(url, {
         params: new HttpParams()

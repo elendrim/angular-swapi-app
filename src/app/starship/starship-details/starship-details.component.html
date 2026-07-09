@@ -1,5 +1,6 @@
 
-<div *ngIf="starship" class="basic-container" >    
+@if (starship(); as starship) {
+<div class="basic-container" >    
 
     
     <h2>
@@ -9,7 +10,7 @@
         </div>
     </h2>
         
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
         <a mat-tab-link
         [routerLink]="['/starship', starship.id ,'property']"
         routerLinkActive #rla1="routerLinkActive"
@@ -33,5 +34,6 @@
         </a>
     </nav>
 
-    <router-outlet></router-outlet>
+    <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
 </div>
+}

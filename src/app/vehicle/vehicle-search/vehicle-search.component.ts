@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
 import {VehicleService, Vehicle} from "../../vehicle.service"
@@ -16,6 +16,7 @@ const displayedColumnsXLarge= ["id", "name", "manufacturer", "model", "vehicle_c
 
 
 @Component({
+  standalone: false,
   selector: 'app-vehicle-search',
   templateUrl: './vehicle-search.component.html',
   styleUrls: ['./vehicle-search.component.css']
@@ -151,7 +152,7 @@ export class VehicleDataSource implements DataSource<Vehicle> {
     .subscribe(vehicleTab => {
 
       vehicleTab.forEach(vehicle => {
-        let id = this.helperService.getIdFromUrl(vehicle.url);
+        const id = this.helperService.getIdFromUrl(vehicle.url);
         vehicle.id = id;  
       });
       

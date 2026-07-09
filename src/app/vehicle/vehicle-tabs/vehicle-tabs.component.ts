@@ -1,20 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
 import { PeopleService, People } from '../../people.service';
 import { VehicleService, Vehicle } from '../../vehicle.service';
-import { StarshipService, Starship } from '../../starship.service';
-import { SpeciesService, Species } from '../../species.service';
+import { StarshipService } from '../../starship.service';
+import { SpeciesService } from '../../species.service';
 import { FilmService, Film } from '../../film.service';
-import { PlanetService, Planet } from '../../planet.service';
+import { PlanetService } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-vehicle-tabs',
   templateUrl: './vehicle-tabs.component.html',
   styleUrls: ['./vehicle-tabs.component.css']
@@ -45,7 +44,7 @@ export class VehicleTabsComponent implements OnInit {
     this.route.parent.paramMap.subscribe(params => {
 
       // from people 
-      let peopleId = params.get('peopleId');
+      const peopleId = params.get('peopleId');
       if ( peopleId ) {
 
         this.peopleService.getPeople(peopleId).subscribe(data => {
@@ -53,13 +52,13 @@ export class VehicleTabsComponent implements OnInit {
           this.people.id = peopleId;
 
           // vehicles
-          let vehicles = new Array<Vehicle>();
+          const vehicles = new Array<Vehicle>();
           this.people.vehicles.forEach( element=> {
-            let obs = this.vehicleService.getVehicleFromURL(element);
+            const obs = this.vehicleService.getVehicleFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               vehicles.push(data);
@@ -71,7 +70,7 @@ export class VehicleTabsComponent implements OnInit {
       }
 
       // from film
-      let filmId = params.get('filmId');
+      const filmId = params.get('filmId');
       if ( filmId ) {
 
         this.filmService.getFilm(filmId).subscribe(data => {
@@ -79,13 +78,13 @@ export class VehicleTabsComponent implements OnInit {
           this.film.id = filmId;
 
           // vehicles
-          let vehicles = new Array<Vehicle>();
+          const vehicles = new Array<Vehicle>();
           this.film.vehicles.forEach( element=> {
-            let obs = this.vehicleService.getVehicleFromURL(element);
+            const obs = this.vehicleService.getVehicleFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               vehicles.push(data);

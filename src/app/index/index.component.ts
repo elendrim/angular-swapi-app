@@ -1,13 +1,14 @@
-import { Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 @Component({
+  standalone: false,
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent {
 
   cols : number;
 
@@ -47,7 +48,4 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-  
 }

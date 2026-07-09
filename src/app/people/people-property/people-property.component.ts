@@ -1,28 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
 import { PeopleService, People } from '../../people.service';
-import { VehicleService, Vehicle } from '../../vehicle.service';
-import { StarshipService, Starship } from '../../starship.service';
-import { SpeciesService, Species } from '../../species.service';
-import { FilmService, Film } from '../../film.service';
+import { VehicleService } from '../../vehicle.service';
+import { StarshipService } from '../../starship.service';
+import { SpeciesService } from '../../species.service';
+import { FilmService } from '../../film.service';
 import { PlanetService, Planet } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-people-property',
   templateUrl: './people-property.component.html',
   styleUrls: ['./people-property.component.css']
 })
 export class PeoplePropertyComponent implements OnInit {
-
-  people : People;
-  homeworld : Planet;
+  people = signal<People | undefined>(undefined);
+  homeworld = signal<Planet | undefined>(undefined);
   
 
   constructor(
@@ -40,20 +37,20 @@ export class PeoplePropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      let id = params.get('peopleId');
+      const id = params.get('peopleId');
       
       this.peopleService.getPeople(id).subscribe(data => {
-        this.people = data;
-        this.people.id = id;
+        data.id = id;
+        this.people.set(data);
 
         // homeworld
-        let obs = this.planetService.getPlanetFromURL(this.people.homeworld);
+        const obs = this.planetService.getPlanetFromURL(data.homeworld);
         obs.subscribe(planet => {
 
-          let planetId = this.helperService.getIdFromUrl(this.people.homeworld);
+          const planetId = this.helperService.getIdFromUrl(data.homeworld);
           
-          this.homeworld = planet; 
-          this.homeworld.id = planetId;
+          planet.id = planetId;
+          this.homeworld.set(planet);
 
         });
       });

@@ -1,27 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
-import { PeopleService, People } from '../../people.service';
-import { VehicleService, Vehicle } from '../../vehicle.service';
-import { StarshipService, Starship } from '../../starship.service';
-import { SpeciesService, Species } from '../../species.service';
-import { FilmService, Film } from '../../film.service';
+import { PeopleService } from '../../people.service';
+import { VehicleService } from '../../vehicle.service';
+import { StarshipService } from '../../starship.service';
+import { SpeciesService } from '../../species.service';
+import { FilmService } from '../../film.service';
 import { PlanetService, Planet } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-planet-property',
   templateUrl: './planet-property.component.html',
   styleUrls: ['./planet-property.component.css']
 })
 export class PlanetPropertyComponent implements OnInit {
-
-  planet : Planet;
+  planet = signal<Planet | undefined>(undefined);
   
 
   constructor(
@@ -39,11 +36,11 @@ export class PlanetPropertyComponent implements OnInit {
     
     this.route.parent.paramMap.subscribe(params => {
       
-      let id = params.get('planetId');
+      const id = params.get('planetId');
       
       this.planetService.getPlanet(id).subscribe(data => {
-        this.planet = data;
-        this.planet.id = id;
+        data.id = id;
+        this.planet.set(data);
       });
 
     });
