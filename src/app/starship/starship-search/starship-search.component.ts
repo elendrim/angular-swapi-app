@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, throwError, of, fromEvent } from 'rxjs';
-import { catchError, finalize, retry, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, BehaviorSubject, of, fromEvent } from 'rxjs';
+import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 
-import {FilmService, Film} from "../../film.service"
 import {HelperService} from "../../helper.service"
 import { StarshipService, Starship } from '../../starship.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -17,6 +16,7 @@ const displayedColumnsXLarge= ["id", "name", "manufacturer", "model", "starship_
 
 
 @Component({
+  standalone: false,
   selector: 'app-starship-search',
   templateUrl: './starship-search.component.html',
   styleUrls: ['./starship-search.component.css']
@@ -152,7 +152,7 @@ export class StarshipDataSource implements DataSource<Starship> {
     .subscribe(starshipTab => {
 
       starshipTab.forEach(starship => {
-        let id = this.helperService.getIdFromUrl(starship.url);
+        const id = this.helperService.getIdFromUrl(starship.url);
         starship.id = id;  
       });
       

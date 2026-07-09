@@ -1,136 +1,145 @@
-<div *ngIf="planet" class="mat-elevation-z8 basic-property-container">
-
-    <img class="details-img" src="https://starwars-visualguide.com/assets/img/planets/{{planet.id}}.jpg" onerror="this.style.display='none'" />
+@if (planet(); as planet) {
+  <div class="mat-elevation-z8 basic-property-container">
+    <img
+      class="details-img"
+      alt="{{ planet.name }}"
+      src="https://starwars-visualguide.com/assets/img/planets/{{ planet.id }}.jpg"
+      onerror="this.style.display = 'none'"
+    />
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Id
-        </div>
-        <div class="example-button-row">
-            {{planet.id}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Id
+      </div>
+      <div class="example-button-row">
+        {{ planet.id }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Name
-        </div>
-        <div class="example-button-row">
-            {{planet.name}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Name
+      </div>
+      <div class="example-button-row">
+        {{ planet.name }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Diameter
-        </div>
-        <div class="example-button-row">
-            {{planet.diameter}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-   
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Rotation period
-        </div>
-        <div class="example-button-row">
-            {{planet.rotation_period}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Diameter
+      </div>
+      <div class="example-button-row">
+        {{ planet.diameter }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Orbital period
-        </div>
-        <div class="example-button-row">
-            {{planet.orbital_period}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-
-
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Gravity
-        </div>
-        <div class="example-button-row">
-            {{planet.gravity}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Rotation period
+      </div>
+      <div class="example-button-row">
+        {{ planet.rotation_period }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Population
-        </div>
-        <div class="example-button-row">
-            {{planet.population}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Orbital period
+      </div>
+      <div class="example-button-row">
+        {{ planet.orbital_period }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Climate
-        </div>
-        <div class="example-button-row">
-            {{planet.climate}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Gravity
+      </div>
+      <div class="example-button-row">
+        {{ planet.gravity }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Terrain
-        </div>
-        <div class="example-button-row">
-            {{planet.terrain}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Population
+      </div>
+      <div class="example-button-row">
+        {{ planet.population }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Surface water
-        </div>
-        <div class="example-button-row">
-            {{planet.surface_water}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Created
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="planet.created">{{planet.created | date:'medium'}}</span>
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Climate
+      </div>
+      <div class="example-button-row">
+        {{ planet.climate }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Edited
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="planet.created">{{planet.edited | date:'medium'}}</span>
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Terrain
+      </div>
+      <div class="example-button-row">
+        {{ planet.terrain }}
+      </div>
     </section>
-</div>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Surface water
+      </div>
+      <div class="example-button-row">
+        {{ planet.surface_water }}
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Created
+      </div>
+      <div class="example-button-row">
+        @if (planet.created) {
+          <span>{{ planet.created | date: 'medium' }}</span>
+        }
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Edited
+      </div>
+      <div class="example-button-row">
+        @if (planet.created) {
+          <span>{{ planet.edited | date: 'medium' }}</span>
+        }
+      </div>
+    </section>
+  </div>
+}

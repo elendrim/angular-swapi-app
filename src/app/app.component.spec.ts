@@ -1,24 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AngularMaterialModule } from './angular-material.module';
+import { MATERIAL_MODULES } from './angular-material.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(() => {
+    // jsdom's matchMedia (when present) lacks addEventListener; provide a stub
+    // matching the MediaQueryList API used by MediaMatcher in AppComponent.
+    (window as any).matchMedia = (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    });
+  });
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        AngularMaterialModule
+        ...MATERIAL_MODULES
       ],
       declarations: [
         AppComponent
       ],
     }).compileComponents();
-  }));
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

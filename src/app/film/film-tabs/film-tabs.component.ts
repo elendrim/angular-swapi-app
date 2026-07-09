@@ -1,8 +1,7 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
 import { PeopleService, People } from '../../people.service';
 import { VehicleService, Vehicle } from '../../vehicle.service';
@@ -11,11 +10,11 @@ import { SpeciesService, Species } from '../../species.service';
 import { FilmService, Film } from '../../film.service';
 import { PlanetService, Planet } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-film-tabs',
   templateUrl: './film-tabs.component.html',
   styleUrls: ['./film-tabs.component.css']
@@ -50,20 +49,20 @@ export class FilmTabsComponent implements OnInit {
       
 
       // from starship
-      let starshipId = params.get('starshipId');
+      const starshipId = params.get('starshipId');
       if ( starshipId ) {
         this.starshipService.getStarship(starshipId).subscribe(data => {
           this.starship = data;
           this.starship.id = starshipId;
 
           // films
-          let films = new Array<Film>();
+          const films = new Array<Film>();
           this.starship.films.forEach( element=> {
-            let obs = this.filmService.getFilmFromURL(element);
+            const obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               films.push(data);
@@ -74,20 +73,20 @@ export class FilmTabsComponent implements OnInit {
       }
 
       // from people
-      let peopleId = params.get('peopleId');
+      const peopleId = params.get('peopleId');
       if ( peopleId ) {
         this.peopleService.getPeople(peopleId).subscribe(data => {
           this.people = data;
           this.people.id = peopleId;
 
           // films
-          let films = new Array<Film>();
+          const films = new Array<Film>();
           this.people.films.forEach( element=> {
-            let obs = this.filmService.getFilmFromURL(element);
+            const obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               films.push(data);
@@ -99,20 +98,20 @@ export class FilmTabsComponent implements OnInit {
 
 
       // from planet
-      let planetId = params.get('planetId');
+      const planetId = params.get('planetId');
       if ( planetId ) {
         this.planetService.getPlanet(planetId).subscribe(data => {
           this.planet = data;
           this.planet.id = planetId;
 
           // films
-          let films = new Array<Film>();
+          const films = new Array<Film>();
           this.planet.films.forEach( element=> {
-            let obs = this.filmService.getFilmFromURL(element);
+            const obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               films.push(data);
@@ -125,20 +124,20 @@ export class FilmTabsComponent implements OnInit {
 
 
       // from species
-      let speciesId = params.get('speciesId');
+      const speciesId = params.get('speciesId');
       if ( speciesId ) {
         this.speciesService.getSpecies(speciesId).subscribe(data => {
           this.species = data;
           this.species.id = planetId;
 
           // films
-          let films = new Array<Film>();
+          const films = new Array<Film>();
           this.species.films.forEach( element=> {
-            let obs = this.filmService.getFilmFromURL(element);
+            const obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               films.push(data);
@@ -151,20 +150,20 @@ export class FilmTabsComponent implements OnInit {
 
 
       // from vehicle
-      let vehicleId = params.get('vehicleId');
+      const vehicleId = params.get('vehicleId');
       if ( vehicleId ) {
         this.vehicleService.getVehicle(vehicleId).subscribe(data => {
           this.vehicle = data;
           this.vehicle.id = planetId;
 
           // films
-          let films = new Array<Film>();
+          const films = new Array<Film>();
           this.vehicle.films.forEach( element=> {
-            let obs = this.filmService.getFilmFromURL(element);
+            const obs = this.filmService.getFilmFromURL(element);
 
             obs.subscribe(data => {
 
-              let id = this.helperService.getIdFromUrl(element);
+              const id = this.helperService.getIdFromUrl(element);
               data.id = id; 
 
               films.push(data);

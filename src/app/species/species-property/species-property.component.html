@@ -1,147 +1,156 @@
-<div *ngIf="species" class="mat-elevation-z8 basic-property-container">
-
-    <img class="details-img" src="https://starwars-visualguide.com/assets/img/species/{{species.id}}.jpg" onerror="this.style.display='none'" />
+@if (species(); as species) {
+  <div class="mat-elevation-z8 basic-property-container">
+    <img
+      class="details-img"
+      alt="{{ species.name }}"
+      src="https://starwars-visualguide.com/assets/img/species/{{ species.id }}.jpg"
+      onerror="this.style.display = 'none'"
+    />
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Id
-        </div>
-        <div class="example-button-row">
-            {{species.id}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Id
+      </div>
+      <div class="example-button-row">
+        {{ species.id }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Name
-        </div>
-        <div class="example-button-row">
-            {{species.name}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Name
+      </div>
+      <div class="example-button-row">
+        {{ species.name }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Classification
-        </div>
-        <div class="example-button-row">
-            {{species.classification}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-   
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Designation
-        </div>
-        <div class="example-button-row">
-            {{species.designation}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Classification
+      </div>
+      <div class="example-button-row">
+        {{ species.classification }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Average height
-        </div>
-        <div class="example-button-row">
-            {{species.average_height}}
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-
-
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Average lifespan
-        </div>
-        <div class="example-button-row">
-            {{species.average_lifespan}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Designation
+      </div>
+      <div class="example-button-row">
+        {{ species.designation }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Eye colors
-        </div>
-        <div class="example-button-row">
-            {{species.eye_colors}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Average height
+      </div>
+      <div class="example-button-row">
+        {{ species.average_height }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Hair colors
-        </div>
-        <div class="example-button-row">
-            {{species.hair_colors}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Average lifespan
+      </div>
+      <div class="example-button-row">
+        {{ species.average_lifespan }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Skin colors
-        </div>
-        <div class="example-button-row">
-            {{species.skin_colors}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Eye colors
+      </div>
+      <div class="example-button-row">
+        {{ species.eye_colors }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Language
-        </div>
-        <div class="example-button-row">
-            {{species.language}}
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Hair colors
+      </div>
+      <div class="example-button-row">
+        {{ species.hair_colors }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Homeworld
-        </div>
-        <div class="example-button-row">
-            <a mat-list-item [routerLink]="['/planet/', homeworld.id]" > {{homeworld.name}} </a>
-        </div>
-    </section>
-    <mat-divider></mat-divider>
-    
-    <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Created
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="species.created">{{species.created | date:'medium'}}</span>
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Skin colors
+      </div>
+      <div class="example-button-row">
+        {{ species.skin_colors }}
+      </div>
     </section>
     <mat-divider></mat-divider>
 
     <section>
-        <div class="example-label">
-            <mat-icon class="example-tab-icon">vide</mat-icon>
-            Edited
-        </div>
-        <div class="example-button-row">
-            <span *ngIf="species.created">{{species.edited | date:'medium'}}</span>
-        </div>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Language
+      </div>
+      <div class="example-button-row">
+        {{ species.language }}
+      </div>
     </section>
-</div>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Homeworld
+      </div>
+      <div class="example-button-row">
+        <a mat-list-item [routerLink]="['/planet/', homeworld().id]"> {{ homeworld().name }} </a>
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Created
+      </div>
+      <div class="example-button-row">
+        @if (species.created) {
+          <span>{{ species.created | date: 'medium' }}</span>
+        }
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+
+    <section>
+      <div class="example-label">
+        <mat-icon class="example-tab-icon">vide</mat-icon>
+        Edited
+      </div>
+      <div class="example-button-row">
+        @if (species.created) {
+          <span>{{ species.edited | date: 'medium' }}</span>
+        }
+      </div>
+    </section>
+  </div>
+}

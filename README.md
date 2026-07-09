@@ -12,30 +12,20 @@ Built with Angular Material and a fully responsive layout.
 
 | Area        | Technology |
 |-------------|------------|
-| Framework   | Angular 10 (CLI 10) |
-| Language    | TypeScript ~3.9 |
-| UI          | Angular Material 10 + `@angular/flex-layout` |
+| Framework   | Angular 22 (standalone-less NgModule app) |
+| Language    | TypeScript ~6.0 |
+| Build       | `@angular/build` (esbuild) |
+| Change detection | Zoneless — components expose loaded data as **signals** |
+| UI          | Angular Material 22 (CDK) |
 | Data source | [SWAPI](https://swapi.dev/) (`?format=json`) |
-| Unit tests  | Karma + Jasmine |
-| E2E tests   | Protractor |
-| Linting     | TSLint |
-| Hosting     | Firebase Hosting (`@angular/fire`) |
+| Unit tests  | [Vitest](https://vitest.dev/) via `@angular/build:unit-test` (jsdom) |
+| Linting     | ESLint + [angular-eslint](https://github.com/angular-eslint/angular-eslint) |
+| Hosting     | Firebase Hosting (deployed with the `firebase` CLI) |
 
 ## Prerequisites
 
-- **Node.js** and **npm**
-- A Chrome / Chromium browser (used by the dev server and the Karma test runner)
-
-> **Node 17+ note.** This project builds on webpack 4 (Angular 10), which relies on
-> an OpenSSL API removed by default in Node 17 and above. Without a workaround you
-> would hit `ERR_OSSL_EVP_UNSUPPORTED`. The npm scripts already handle this: they run
-> through [`cross-env`](https://www.npmjs.com/package/cross-env) with
-> `NODE_OPTIONS=--openssl-legacy-provider`, so `npm start`, `npm run build` and
-> `npm test` work out of the box on any platform (Windows included).
->
-> If you invoke the Angular CLI directly (`ng ...` / `npx ng ...`) instead of via
-> the npm scripts, set the flag yourself:
-> `NODE_OPTIONS=--openssl-legacy-provider npx ng <command>`.
+- **Node.js 22.22+** (or 24.15+ / 26+) — required by the Angular 22 CLI.
+- A Chromium/Chrome browser for the dev server (tests run headlessly in jsdom, no browser needed).
 
 ## Getting started
 
@@ -54,31 +44,19 @@ Then open **http://localhost:4200/**. The app reloads automatically on source ch
 | Command          | Description |
 |------------------|-------------|
 | `npm start`      | Dev server with live reload at `http://localhost:4200/` |
-| `npm run build`  | Production/dev build into `dist/angular-swapi-app/` (add `-- --prod` for production) |
-| `npm test`       | Unit tests via Karma + Jasmine (watch mode + Chrome by default) |
-| `npm run lint`   | Static analysis via TSLint |
-| `npm run e2e`    | End-to-end tests via Protractor |
-
-All build/serve/test scripts inject the OpenSSL legacy flag via `cross-env`
-(see the Node 17+ note above); `lint` does not need it.
+| `npm run build`  | Production build into `dist/angular-swapi-app/browser/` |
+| `npm run watch`  | Development build in watch mode |
+| `npm test`       | Unit tests via Vitest |
+| `npm run lint`   | Static analysis via ESLint (angular-eslint) |
 
 ## Running the tests
 
-By default `npm test` opens a non-headless Chrome and stays in watch mode.
-For a single, non-interactive (CI-friendly) run in headless Chrome:
-
 ```bash
-npm test -- --watch=false --browsers=ChromeHeadless
+npm test -- --no-watch          # single, non-interactive run
 ```
 
-To run a single spec file:
-
-```bash
-npm test -- --include=src/app/people/people-search/people-search.component.spec.ts
-```
-
-The suite covers, for every component, that it can be created, and adds
-visibility checks on the key UI:
+Tests run in a Node.js + jsdom environment (no browser required). The suite covers,
+for every component, that it can be created, plus visibility checks on the key UI:
 
 - **`*-search`** pages render a populated table row with the most significant
   value (the *name*, or the *title* for films).
@@ -89,6 +67,16 @@ visibility checks on the key UI:
 Everything lives in a single `AppModule` (`src/app/app.module.ts`) — there are no
 feature modules or lazy loading. All Angular Material imports are centralized in
 `src/app/angular-material.module.ts`.
+
+### Zoneless change detection & signals
+
+The app runs **without zone.js** (Angular's modern default). Components that load
+data asynchronously expose it as **signals** (e.g. `people = signal<People>()`), and
+templates read them with `@if (people(); as people) { … }`. Setting a signal
+(`this.people.set(data)`) automatically schedules change detection — this is
+required because Angular Material components are OnPush and would otherwise not
+refresh on a plain field assignment. Material tables (`MatTableDataSource`) refresh
+themselves, so the search/tabs tables need no signals.
 
 ### Six parallel resource domains
 
@@ -119,15 +107,18 @@ related resources. For example, `/film/:filmId` has children `property`,
 - `HelperService.getIdFromUrl()` extracts an entity id from a SWAPI URL.
 - `HelperService.getBadgeNumber()` formats the related-item counts shown on the
   detail tabs (e.g. `10+`, `1k+`).
-- Firebase (`@angular/fire`) is used for hosting/deployment only — there is no auth
-  or database usage in the app logic.
 
 ## Deployment
 
-The app is configured for Firebase Hosting (see `firebase.json` / `.firebaserc`):
+The app is configured for Firebase Hosting (see `firebase.json` / `.firebaserc`).
+The hosting `public` directory is `dist/angular-swapi-app/browser` (the esbuild
+output). Deploy with the Firebase CLI:
 
 ```bash
-ng deploy    # via @angular/fire
+npm run build
+npx firebase login          # first time only (interactive)
+npx firebase use <project>  # set the target Firebase project
+npx firebase deploy --only hosting
 ```
 
 ## Credits

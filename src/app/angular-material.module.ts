@@ -41,10 +41,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-import {FlexLayoutModule} from '@angular/flex-layout';
 
-@NgModule({
-  exports: [
+export const MATERIAL_MODULES = [
     A11yModule,
     ClipboardModule,
     CdkStepperModule,
@@ -88,8 +86,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    FlexLayoutModule,
-  ]
-})
+];
 
+@NgModule({
+  imports: MATERIAL_MODULES,
+  exports: MATERIAL_MODULES,
+})
 export class AngularMaterialModule { }

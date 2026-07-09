@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, map } from 'rxjs/operators'
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 
 
@@ -55,7 +55,7 @@ export class StarshipService {
     pageNumber = 0,
     pageSize = 3) :  Observable<Starship[]> {
 
-    let page = pageNumber +1;
+    const page = pageNumber +1;
 
     return this.http.get(this.url, {
         params: new HttpParams()

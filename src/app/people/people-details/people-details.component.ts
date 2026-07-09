@@ -1,27 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 
 import { PeopleService, People } from '../../people.service';
-import { VehicleService, Vehicle } from '../../vehicle.service';
-import { StarshipService, Starship } from '../../starship.service';
-import { SpeciesService, Species } from '../../species.service';
-import { FilmService, Film } from '../../film.service';
-import { PlanetService, Planet } from '../../planet.service';
+import { VehicleService } from '../../vehicle.service';
+import { StarshipService } from '../../starship.service';
+import { SpeciesService } from '../../species.service';
+import { FilmService } from '../../film.service';
+import { PlanetService } from '../../planet.service';
 import { HelperService } from '../../helper.service';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 
 
 @Component({
+  standalone: false,
   selector: 'app-people-details',
   templateUrl: './people-details.component.html',
   styleUrls: ['./people-details.component.css']
 })
 export class PeopleDetailsComponent implements OnInit {
 
-  people : People;
+  people = signal<People | undefined>(undefined);
 
   countFilms : string;
   countVehicles : string;
@@ -44,15 +42,15 @@ export class PeopleDetailsComponent implements OnInit {
     
     this.route.paramMap.subscribe(params => {
       
-      let id = params.get('peopleId');
+      const id = params.get('peopleId');
 
       this.peopleService.getPeople(id).subscribe(data => {
-        this.people = data;
-        this.people.id = id;
+        data.id = id;
         this.countFilms = this.helperService.getBadgeNumber(data.films.length);
         this.countStarships = this.helperService.getBadgeNumber(data.starships.length);
         this.countVehicles = this.helperService.getBadgeNumber(data.vehicles.length);
         this.countSpecies = this.helperService.getBadgeNumber(data.species.length);
+        this.people.set(data);
       });
     });
   }
