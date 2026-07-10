@@ -33,7 +33,7 @@
     "angular-eslint": "22.0.0",
     "eslint": "^10.3.0",
     "eslint-plugin-unused-imports": "^4.4.1",
-    "firebase-tools": "^15.22.4",
+    "firebase-tools": "^15.23.0",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
